@@ -1,31 +1,45 @@
 # telegram MRS 規則
 
-由 GitHub Actions 自動生成，適用於 Mihomo。
+由 GitHub Actions 自動生成，適用於 Mihomo 核心。
 
-## 下載地址
+## MRS 下載地址
 
-**GitHub Raw**
+### GitHub Raw
 
-<https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/telegram/telegram.mrs>
+點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
 
-**jsDelivr CDN**
+```text
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/telegram/telegram.mrs
+```
 
-<https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/telegram/telegram.mrs>
+**[直接下載 MRS](https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/telegram/telegram.mrs)**
+
+### jsDelivr CDN
+
+點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
+
+```text
+https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/telegram/telegram.mrs
+```
+
+**[開啟 CDN 地址](https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/telegram/telegram.mrs)**
 
 ## 規則資訊
 
 | 項目 | 內容 |
 |---|---|
-| 名稱 | telegram |
-| 格式 | MRS |
+| 規則名稱 | telegram |
+| 文件格式 | MRS |
 | Behavior | domain |
-| 規則數量 | 24 |
+| 規則數量 | 25 |
 | 更新頻率 | 每日 |
 
 
-> 注意：此文件從 Classical 規則提取相容的域名或 IP 規則，並非原始 YAML 的完整等價轉換。
+> 注意：此 MRS 從 Classical 規則中提取相容的域名或 IP 規則，並非原始 YAML 的完整等價轉換。
 
-## Mihomo 配置
+## Mihomo 使用方法
+
+以下配置可使用右上角的複製按鈕，一鍵複製整段。
 
 ```yaml
 rule-providers:
