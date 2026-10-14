@@ -29,18 +29,47 @@ jobs:
     timeout-minutes: 20
 
     steps:
+
+      # =====================================
+      # 1. Checkout repository
+      # =====================================
+
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      # =====================================
+      # 2. Setup Python
+      # =====================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
+      # =====================================
+      # 3. Install dependencies
+      # =====================================
+
       - name: Install dependencies
         run: |
+          set -euo pipefail
+
           sudo apt-get update
-          sudo apt-get install -y curl gzip jq
+
+          sudo apt-get install -y \
+            curl \
+            gzip \
+            jq
+
+          python -m pip install --upgrade pip
+          python -m pip install PyYAML
+
+      # =====================================
+      # 4. Download Mihomo
+      # =====================================
 
       - name: Download latest stable Mihomo
         shell: bash
@@ -51,14 +80,17 @@ jobs:
 
           curl -fsSL --retry 3 \
             -H "Accept: application/vnd.github+json" \
-            "$API" -o release.json
+            "$API" \
+            -o release.json
 
           TAG=$(jq -r '.tag_name' release.json)
 
           if [[ -z "$TAG" || "$TAG" == "null" ]]; then
-            echo "Failed to determine Mihomo version"
+            echo "::error::Failed to determine Mihomo version"
             exit 1
           fi
+
+          echo "Mihomo version: $TAG"
 
           ASSET="mihomo-linux-amd64-compatible-${TAG}.gz"
 
@@ -67,40 +99,56 @@ jobs:
             release.json)
 
           if [[ -z "$URL" ]]; then
-            echo "Mihomo asset not found: $ASSET"
+            echo "::error::Mihomo asset not found: $ASSET"
             exit 1
           fi
 
-          echo "Downloading Mihomo $TAG"
+          echo "Downloading: $ASSET"
 
           curl -fL --retry 3 "$URL" -o mihomo.gz
 
-          # Verify GitHub release asset digest
+          # Verify release asset SHA256
+
           EXPECTED=$(jq -r --arg name "$ASSET" \
             '.assets[] | select(.name == $name) | .digest' \
             release.json)
 
           if [[ "$EXPECTED" != sha256:* ]]; then
-            echo "Missing SHA256 release digest"
+            echo "::error::Missing SHA256 release digest"
             exit 1
           fi
 
           echo "${EXPECTED#sha256:}  mihomo.gz" | sha256sum -c -
 
           gzip -dc mihomo.gz > mihomo
+
           chmod +x mihomo
 
           sudo mv mihomo /usr/local/bin/mihomo
 
           mihomo -v
 
-      - name: Build MRS rules
-        run: |
-          python scripts/build.py
+      # =====================================
+      # 5. Build MRS rules and README
+      # =====================================
 
-      - name: Verify outputs
+      - name: Build MRS rules
+        shell: bash
         run: |
           set -euo pipefail
+
+          python scripts/build.py
+
+      # =====================================
+      # 6. Verify generated files
+      # =====================================
+
+      - name: Verify outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "=== Verify MRS files ==="
 
           cd output
 
@@ -109,11 +157,39 @@ jobs:
           count=$(find . -maxdepth 1 -name '*.mrs' | wc -l)
 
           if [ "$count" -eq 0 ]; then
-            echo "No MRS files generated"
+            echo "::error::No MRS files generated"
             exit 1
           fi
 
+          echo "Generated MRS files: $count"
+
           ls -lh *.mrs
+
+          cd ..
+
+          echo "=== Verify repository files ==="
+
+          if [ ! -d "rule/Clash" ]; then
+            echo "::error::rule/Clash directory does not exist"
+            exit 1
+          fi
+
+          find rule/Clash -type f
+
+          echo "=== Verify README files ==="
+
+          readme_count=$(find rule/Clash -name README.md | wc -l)
+
+          if [ "$readme_count" -eq 0 ]; then
+            echo "::error::No README files generated"
+            exit 1
+          fi
+
+          echo "Generated README files: $readme_count"
+
+      # =====================================
+      # 7. Upload artifacts
+      # =====================================
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -121,9 +197,12 @@ jobs:
           name: clash-mrs-rules
           path: output/
           retention-days: 30
+          if-no-files-found: error
 
-      
-      # Publish GitHub Release
+      # =====================================
+      # 8. Publish GitHub Release
+      # =====================================
+
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -134,28 +213,82 @@ jobs:
 
           TAG="daily-$(date -u +%Y%m%d)"
 
+          echo "Publishing Release: $TAG"
+
           if gh release view "$TAG" >/dev/null 2>&1; then
+
             echo "Updating existing daily release"
 
             gh release upload "$TAG" \
-              output/*.mrs output/SHA256SUMS \
+              output/*.mrs \
+              output/SHA256SUMS \
               --clobber
+
           else
+
+            echo "Creating new daily release"
+
             gh release create "$TAG" \
-              output/*.mrs output/SHA256SUMS \
+              output/*.mrs \
+              output/SHA256SUMS \
               --title "MRS Rules ${TAG}" \
               --notes "Automatically generated Mihomo MRS rules." \
               --latest
+
           fi
 
-      
-git add -A rule/Clash/
+          echo "GitHub Release published successfully"
 
-if git diff --cached --quiet; then
-  echo "No changes detected."
-  exit 0
-fi
+      # =====================================
+      # 9. Commit MRS and README
+      # =====================================
 
-git commit -m "chore: update MRS rules and README"
+      - name: Commit MRS files to repository
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
 
-git push origin HEAD:main
+          echo "=== Repository information ==="
+
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+
+          echo "=== Check generated files ==="
+
+          if [ ! -d "rule/Clash" ]; then
+            echo "::error::rule/Clash directory does not exist!"
+            exit 1
+          fi
+
+          find rule/Clash -type f
+
+          echo "=== Configure Git ==="
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "=== Stage files ==="
+
+          git add -A rule/Clash/
+
+          echo "=== Check changes ==="
+
+          git status --short
+
+          if git diff --cached --quiet; then
+            echo "No changes detected. Skipping commit."
+            exit 0
+          fi
+
+          echo "=== Commit changes ==="
+
+          git commit -m "chore: update MRS rules and README"
+
+          echo "=== Push changes ==="
+
+          git push origin HEAD:main
+
+          echo "=== Successfully published ==="
