@@ -253,7 +253,7 @@ for rule in config["rules"]:
 | 文件格式 | MRS |
 | Behavior | {behavior} |
 | 更新頻率 | 每日 |
-| 最後構建日期 | {DATE} |
+## | 最後構建日期 | {DATE} |
 
 ## Mihomo 使用方法
 
