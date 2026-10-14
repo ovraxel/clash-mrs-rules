@@ -148,23 +148,14 @@ jobs:
               --latest
           fi
 
-      # Commit MRS files to repository
-      - name: Commit MRS files to repository
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
+      
+git add -A rule/Clash/
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+if git diff --cached --quiet; then
+  echo "No changes detected."
+  exit 0
+fi
 
-          git add -A rule/Clash/
+git commit -m "chore: update MRS rules and README"
 
-          if git diff --cached --quiet; then
-            echo "No MRS changes detected."
-            exit 0
-          fi
-
-          git commit -m "chore: update MRS rules"
-
-          git push origin HEAD:main
+git push origin HEAD:main
