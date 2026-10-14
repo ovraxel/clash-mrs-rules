@@ -1,28 +1,31 @@
 # telegram-ip MRS 規則
 
-由 GitHub Actions 自動生成，適用於 Mihomo 核心。
+由 GitHub Actions 自動生成，適用於 Mihomo。
 
-## 規則鏈接
+## 下載地址
 
-### MAIN 分支（每日更新）
+**GitHub Raw**
 
 <https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/telegram-ip/telegram-ip.mrs>
 
-### MAIN 分支 CDN（每日更新）
+**jsDelivr CDN**
 
 <https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/telegram-ip/telegram-ip.mrs>
 
 ## 規則資訊
 
-| 項目 | 說明 |
+| 項目 | 內容 |
 |---|---|
-| 規則名稱 | telegram-ip |
-| 文件格式 | MRS |
+| 名稱 | telegram-ip |
+| 格式 | MRS |
 | Behavior | ipcidr |
+| 規則數量 | 10 |
 | 更新頻率 | 每日 |
-## | 最後構建日期 | 2026-10-14 |
 
-## Mihomo 使用方法
+
+> 注意：此文件從 Classical 規則提取相容的域名或 IP 規則，並非原始 YAML 的完整等價轉換。
+
+## Mihomo 配置
 
 ```yaml
 rule-providers:
@@ -41,4 +44,4 @@ rule-providers:
 
 ---
 
-此 README 由 GitHub Actions 自動生成，請勿手動修改。
+此 README 由 GitHub Actions 自動生成。

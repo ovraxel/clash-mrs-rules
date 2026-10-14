@@ -1,0 +1,7 @@
+{
+  "managed_rules": [
+    "google",
+    "telegram",
+    "telegram-ip"
+  ]
+}
