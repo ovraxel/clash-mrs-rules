@@ -1,0 +1,147 @@
+
+name: Build Clash MRS Rules
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 3 * * *'
+
+  push:
+    branches:
+      - main
+    paths:
+      - 'config/**'
+      - 'scripts/**'
+      - '.github/workflows/build-mrs.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mrs-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build and Publish MRS
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl gzip jq
+
+      - name: Download latest stable Mihomo
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          API="https://api.github.com/repos/MetaCubeX/mihomo/releases/latest"
+
+          curl -fsSL --retry 3 \
+            -H "Accept: application/vnd.github+json" \
+            "$API" -o release.json
+
+          TAG=$(jq -r '.tag_name' release.json)
+
+          if [[ -z "$TAG" || "$TAG" == "null" ]]; then
+            echo "Failed to determine Mihomo version"
+            exit 1
+          fi
+
+          ASSET="mihomo-linux-amd64-compatible-${TAG}.gz"
+
+          URL=$(jq -r --arg name "$ASSET" \
+            '.assets[] | select(.name == $name) | .browser_download_url' \
+            release.json)
+
+          if [[ -z "$URL" ]]; then
+            echo "Mihomo asset not found: $ASSET"
+            exit 1
+          fi
+
+          echo "Downloading Mihomo $TAG"
+
+          curl -fL --retry 3 "$URL" -o mihomo.gz
+
+          # Verify GitHub release asset digest
+          EXPECTED=$(jq -r --arg name "$ASSET" \
+            '.assets[] | select(.name == $name) | .digest' \
+            release.json)
+
+          if [[ "$EXPECTED" != sha256:* ]]; then
+            echo "Missing SHA256 release digest"
+            exit 1
+          fi
+
+          echo "${EXPECTED#sha256:}  mihomo.gz" | sha256sum -c -
+
+          gzip -dc mihomo.gz > mihomo
+          chmod +x mihomo
+
+          sudo mv mihomo /usr/local/bin/mihomo
+
+          mihomo -v
+
+      - name: Build MRS rules
+        run: |
+          python scripts/build.py
+
+      - name: Verify outputs
+        run: |
+          set -euo pipefail
+
+          cd output
+
+          sha256sum -c SHA256SUMS
+
+          count=$(find . -maxdepth 1 -name '*.mrs' | wc -l)
+
+          if [ "$count" -eq 0 ]; then
+            echo "No MRS files generated"
+            exit 1
+          fi
+
+          ls -lh *.mrs
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: clash-mrs-rules
+          path: output/
+          retention-days: 30
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TAG="daily-$(date -u +%Y%m%d)"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Updating existing daily release"
+
+            gh release upload "$TAG" \
+              output/*.mrs output/SHA256SUMS \
+              --clobber
+          else
+            gh release create "$TAG" \
+              output/*.mrs output/SHA256SUMS \
+              --title "MRS Rules ${TAG}" \
+              --notes "Automatically generated Mihomo MRS rules." \
+              --latest
+          fi
