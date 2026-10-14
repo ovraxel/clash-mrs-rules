@@ -5,22 +5,139 @@
       "name": "google",
       "behavior": "domain",
       "format": "classical",
-      "min_rules": 1,
       "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
     },
     {
       "name": "telegram",
       "behavior": "domain",
       "format": "classical",
-      "min_rules": 1,
       "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
     },
     {
       "name": "telegram-ip",
       "behavior": "ipcidr",
       "format": "classical",
-      "min_rules": 1,
       "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
+    },
+    {
+      "name": "tiktok",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml"
+    },
+    {
+      "name": "youtube",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
+    },
+    {
+      "name": "youtube-ip",
+      "behavior": "ipcidr",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
+    },
+    {
+      "name": "apple",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
+    },
+    {
+      "name": "apple-ip",
+      "behavior": "ipcidr",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
+    },
+    {
+      "name": "github",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
+    },
+    {
+      "name": "pikpak",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PikPak/PikPak.yaml"
+    },
+    {
+      "name": "whatsapp",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    },
+    {
+      "name": "whatsapp-ip",
+      "behavior": "ipcidr",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Whatsapp/Whatsapp.yaml"
+    },
+    {
+      "name": "cloudflare",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
+    },
+    {
+      "name": "cloudflare-ip",
+      "behavior": "ipcidr",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
+    },
+    {
+      "name": "okx",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OKX/OKX.yaml"
+    },
+    {
+      "name": "protonmail",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Protonmail/Protonmail.yaml"
+    },
+    {
+      "name": "spotify",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
+    },
+    {
+      "name": "spotify-ip",
+      "behavior": "ipcidr",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
+    },
+    {
+      "name": "reddit",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.yaml"
+    },
+    {
+      "name": "openai",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
+    },
+    {
+      "name": "x",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
+    },
+    {
+      "name": "vk",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/VK/VK.yaml"
+    },
+    {
+      "name": "ins",
+      "behavior": "domain",
+      "format": "classical",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.yaml"
     }
   ]
 }
