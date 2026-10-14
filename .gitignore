@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Clash MRS Builder
+.build/
+output/
+mihomo
+mihomo.gz
+release.json
+__pycache__/
+*.pyc
