@@ -159,3 +159,33 @@ with checksum_file.open("w", encoding="utf-8") as f:
         f.write(f"{digest}  {path.name}\n")
 
 print("\nAll MRS rules built successfully.")
+
+
+# Publish MRS files into GitHub directory structure
+
+import shutil
+
+PUBLISH_DIR = ROOT / "rule" / "Clash"
+
+for rule in config["rules"]:
+    name = rule["name"]
+
+    source = OUTPUT / f"{name}.mrs"
+
+    if not source.is_file():
+        raise RuntimeError(f"Missing MRS: {source}")
+
+    folder = PUBLISH_DIR / name
+    folder.mkdir(parents=True, exist_ok=True)
+
+    target = folder / f"{name}.mrs"
+
+    shutil.copy2(source, target)
+
+    print(f"Published: {target}")
+
+shutil.copy2(
+    OUTPUT / "SHA256SUMS",
+    PUBLISH_DIR / "SHA256SUMS"
+)
+
