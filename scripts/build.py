@@ -15,10 +15,11 @@ import yaml
 
 
 # ==========================================
-# Project paths
+# 1. Project paths
 # ==========================================
 
 ROOT = Path(__file__).resolve().parent.parent
+
 CONFIG = ROOT / "config" / "sources.json"
 OUTPUT = ROOT / "output"
 TEMP = ROOT / ".build"
@@ -39,7 +40,7 @@ if not re.fullmatch(r"[A-Za-z0-9._/-]+", BRANCH):
 
 
 # ==========================================
-# Configuration
+# 2. Load configuration
 # ==========================================
 
 def load_config():
@@ -77,7 +78,7 @@ def load_config():
 
         if behavior not in ("domain", "ipcidr"):
             raise ValueError(
-                f"{name}: MRS only supports domain/ipcidr"
+                f"{name}: Unsupported MRS behavior"
             )
 
         if source_format not in (
@@ -104,7 +105,7 @@ def load_config():
 
 
 # ==========================================
-# Download and parse sources
+# 3. Download upstream sources
 # ==========================================
 
 CACHE = {}
@@ -120,7 +121,7 @@ def download(url):
     request = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "Clash-MRS-Builder/2.0"
+            "User-Agent": "Clash-MRS-Builder/2.1"
         }
     )
 
@@ -134,12 +135,16 @@ def download(url):
     if len(content) > 20 * 1024 * 1024:
         raise RuntimeError("Source exceeds 20 MB")
 
-    result = content.decode("utf-8-sig")
+    text = content.decode("utf-8-sig")
 
-    CACHE[url] = result
+    CACHE[url] = text
 
-    return result
+    return text
 
+
+# ==========================================
+# 4. Parse YAML / TXT
+# ==========================================
 
 def parse_source(content, source_format):
 
@@ -157,13 +162,15 @@ def parse_source(content, source_format):
         raise ValueError("Missing or empty YAML payload")
 
     if not all(isinstance(x, str) for x in payload):
-        raise ValueError("YAML payload must contain strings")
+        raise ValueError(
+            "YAML payload must contain strings"
+        )
 
     return payload
 
 
 # ==========================================
-# Domain conversion
+# 5. Domain normalization
 # ==========================================
 
 DOMAIN_PATTERN = re.compile(
@@ -178,14 +185,22 @@ def valid_domain(value):
     return bool(DOMAIN_PATTERN.fullmatch(value))
 
 
+def valid_keyword(value):
+
+    return bool(
+        value
+        and len(value) <= 253
+        and not any(c.isspace() for c in value)
+        and "," not in value
+    )
+
+
 def normalize_domain(raw, source_format):
 
     line = raw.strip().strip("'\"").strip()
 
     if not line or line.startswith("#"):
         return None
-
-    upper = line.upper()
 
     if source_format == "classical":
 
@@ -197,44 +212,59 @@ def normalize_domain(raw, source_format):
         kind = parts[0].upper()
         value = parts[1].lower()
 
-        if not valid_domain(value):
+        if kind == "DOMAIN":
+            if valid_domain(value):
+                return "full:" + value
             return None
 
-        if kind == "DOMAIN":
-            return "full:" + value
-
         if kind == "DOMAIN-SUFFIX":
-            return "+." + value
+            if valid_domain(value):
+                return "+." + value
+            return None
 
         if kind == "DOMAIN-KEYWORD":
-            # Keywords do not need to be valid domains.
+            if valid_keyword(value):
+                return "keyword:" + value
             return None
 
         return None
 
-    # Native domain payload or plain-text domain source.
+    # Native domain or plain text rules
 
     line = line.lower()
 
     if line.startswith("full:"):
+
         value = line[5:]
+
         return line if valid_domain(value) else None
 
     if line.startswith("keyword:"):
+
         value = line[8:]
-        return line if value and " " not in value else None
+
+        return line if valid_keyword(value) else None
 
     if line.startswith("+."):
+
         value = line[2:]
+
         return line if valid_domain(value) else None
 
     if line.startswith("*."):
+
         value = line[2:]
+
         return line if valid_domain(value) else None
 
     if line.startswith("."):
+
         value = line[1:]
-        return "+." + value if valid_domain(value) else None
+
+        if valid_domain(value):
+            return "+." + value
+
+        return None
 
     if valid_domain(line):
         return line
@@ -243,7 +273,7 @@ def normalize_domain(raw, source_format):
 
 
 # ==========================================
-# IP conversion
+# 6. IP normalization
 # ==========================================
 
 def normalize_ip(raw, source_format):
@@ -271,15 +301,20 @@ def normalize_ip(raw, source_format):
         return None
 
     try:
-        return str(
-            ipaddress.ip_network(line, strict=False)
+
+        network = ipaddress.ip_network(
+            line,
+            strict=False
         )
+
+        return str(network)
+
     except ValueError:
         return None
 
 
 # ==========================================
-# README generation
+# 7. Generate README
 # ==========================================
 
 def generate_readme(rule, count):
@@ -303,38 +338,56 @@ def generate_readme(rule, count):
     notice = ""
 
     if source_format == "classical":
+
         notice = (
-            "\n> 注意：此文件從 Classical 規則提取"
+            "\n> 注意：此 MRS 從 Classical 規則中提取"
             "相容的域名或 IP 規則，並非原始 YAML "
             "的完整等價轉換。\n"
         )
 
+    # Use GitHub native code-block copy buttons.
+    # No custom JavaScript is required.
+
     return f"""# {name} MRS 規則
 
-由 GitHub Actions 自動生成，適用於 Mihomo。
+由 GitHub Actions 自動生成，適用於 Mihomo 核心。
 
-## 下載地址
+## MRS 下載地址
 
-**GitHub Raw**
+### GitHub Raw
 
-<{raw_url}>
+點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
 
-**jsDelivr CDN**
+```text
+{raw_url}
+```
 
-<{cdn_url}>
+**[直接下載 MRS]({raw_url})**
+
+### jsDelivr CDN
+
+點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
+
+```text
+{cdn_url}
+```
+
+**[開啟 CDN 地址]({cdn_url})**
 
 ## 規則資訊
 
 | 項目 | 內容 |
 |---|---|
-| 名稱 | {name} |
-| 格式 | MRS |
+| 規則名稱 | {name} |
+| 文件格式 | MRS |
 | Behavior | {behavior} |
 | 規則數量 | {count} |
 | 更新頻率 | 每日 |
 
 {notice}
-## Mihomo 配置
+## Mihomo 使用方法
+
+以下配置可使用右上角的複製按鈕，一鍵複製整段。
 
 ```yaml
 rule-providers:
@@ -358,7 +411,7 @@ rule-providers:
 
 
 # ==========================================
-# Build individual MRS
+# 8. Build individual MRS
 # ==========================================
 
 def build_rule(rule, stage):
@@ -374,7 +427,10 @@ def build_rule(rule, stage):
 
     content = download(rule["url"])
 
-    payload = parse_source(content, source_format)
+    payload = parse_source(
+        content,
+        source_format
+    )
 
     converted = set()
     skipped = 0
@@ -382,12 +438,17 @@ def build_rule(rule, stage):
     for raw in payload:
 
         if behavior == "domain":
+
             value = normalize_domain(
-                raw, source_format
+                raw,
+                source_format
             )
+
         else:
+
             value = normalize_ip(
-                raw, source_format
+                raw,
+                source_format
             )
 
         if value:
@@ -398,6 +459,7 @@ def build_rule(rule, stage):
     minimum = rule.get("min_rules", 1)
 
     if len(converted) < minimum:
+
         raise RuntimeError(
             f"{name}: only {len(converted)} valid rules; "
             f"minimum is {minimum}"
@@ -424,12 +486,17 @@ def build_rule(rule, stage):
     )
 
     if not target.is_file() or target.stat().st_size == 0:
+
         raise RuntimeError(
             f"{name}: missing or empty MRS"
         )
 
     folder = stage / name
-    folder.mkdir(parents=True, exist_ok=True)
+
+    folder.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     shutil.copyfile(
         target,
@@ -437,7 +504,10 @@ def build_rule(rule, stage):
     )
 
     (folder / "README.md").write_text(
-        generate_readme(rule, len(converted)),
+        generate_readme(
+            rule,
+            len(converted)
+        ),
         encoding="utf-8"
     )
 
@@ -451,14 +521,16 @@ def build_rule(rule, stage):
 
 
 # ==========================================
-# SHA256 generation
+# 9. Generate SHA256SUMS
 # ==========================================
 
 def generate_checksums(stage):
 
     lines = []
 
-    files = sorted(OUTPUT.glob("*.mrs"))
+    files = sorted(
+        OUTPUT.glob("*.mrs")
+    )
 
     if not files:
         raise RuntimeError("No MRS files generated")
@@ -469,7 +541,9 @@ def generate_checksums(stage):
             path.read_bytes()
         ).hexdigest()
 
-        lines.append(f"{digest}  {path.name}")
+        lines.append(
+            f"{digest}  {path.name}"
+        )
 
     content = "\n".join(lines) + "\n"
 
@@ -484,19 +558,26 @@ def generate_checksums(stage):
     )
 
     subprocess.run(
-        ["sha256sum", "-c", "SHA256SUMS"],
+        [
+            "sha256sum",
+            "-c",
+            "SHA256SUMS"
+        ],
         cwd=OUTPUT,
         check=True
     )
 
 
 # ==========================================
-# Publish completed build
+# 10. Publish completed build
 # ==========================================
 
 def publish(stage, rules):
 
-    PUBLISH.mkdir(parents=True, exist_ok=True)
+    PUBLISH.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     manifest_path = PUBLISH / MANIFEST
 
@@ -504,25 +585,39 @@ def publish(stage, rules):
 
     if manifest_path.exists():
 
-        previous = json.loads(
-            manifest_path.read_text(encoding="utf-8")
-        ).get("managed_rules", [])
+        manifest = json.loads(
+            manifest_path.read_text(
+                encoding="utf-8"
+            )
+        )
+
+        previous = manifest.get(
+            "managed_rules",
+            []
+        )
 
         if not isinstance(previous, list):
-            raise RuntimeError("Invalid previous manifest")
+            raise RuntimeError(
+                "Invalid previous manifest"
+            )
 
         for name in previous:
+
             if not isinstance(name, str) or not re.fullmatch(
-                r"[A-Za-z0-9_-]+", name
+                r"[A-Za-z0-9_-]+",
+                name
             ):
+
                 raise RuntimeError(
                     "Unsafe entry in previous manifest"
                 )
 
-    current = [rule["name"] for rule in rules]
+    current = [
+        rule["name"]
+        for rule in rules
+    ]
 
-    # Remove only previously managed rule folders.
-    # Do not touch unrelated files in rule/Clash/.
+    # Remove only previously managed folders.
 
     for name in previous:
 
@@ -531,11 +626,14 @@ def publish(stage, rules):
             old_folder = PUBLISH / name
 
             if old_folder.is_dir():
-                shutil.rmtree(old_folder)
-                print(f"Removed old rule: {name}")
 
-    # All conversions and checksum checks have
-    # already succeeded before reaching this point.
+                shutil.rmtree(old_folder)
+
+                print(
+                    f"Removed old rule: {name}"
+                )
+
+    # Copy all successfully generated files.
 
     for name in current:
 
@@ -551,6 +649,7 @@ def publish(stage, rules):
             f"{name}.mrs",
             "README.md"
         ):
+
             shutil.copyfile(
                 source_folder / filename,
                 target_folder / filename
@@ -576,12 +675,14 @@ def publish(stage, rules):
 
 
 # ==========================================
-# Main
+# 11. Main
 # ==========================================
 
 def main():
 
     rules = load_config()
+
+    # Clean temporary directories only.
 
     for folder in (OUTPUT, TEMP):
 
@@ -591,20 +692,31 @@ def main():
         folder.mkdir(parents=True)
 
     stage = TEMP / "publish"
-    stage.mkdir(parents=True)
 
-    # Build everything first.
+    stage.mkdir(
+        parents=True
+    )
+
+    # Build all rules first.
 
     for rule in rules:
-        build_rule(rule, stage)
 
-    # Verify checksums before publishing.
+        build_rule(
+            rule,
+            stage
+        )
+
+    # Verify SHA256 before publishing.
 
     generate_checksums(stage)
 
-    # Publish only after all rules succeed.
+    # Update repository files only after
+    # every rule has been built successfully.
 
-    publish(stage, rules)
+    publish(
+        stage,
+        rules
+    )
 
     print(
         "\nAll MRS rules built and published successfully.",
