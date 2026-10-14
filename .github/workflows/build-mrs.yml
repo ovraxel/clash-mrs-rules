@@ -19,20 +19,20 @@ permissions:
   contents: write
 
 concurrency:
-  group: mrs-release
+  group: clash-mrs-main
   cancel-in-progress: false
 
 jobs:
   build:
     name: Build and Publish MRS
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
 
-      # =====================================
-      # 1. Checkout repository
-      # =====================================
+      # ====================================
+      # 1. Checkout
+      # ====================================
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -40,156 +40,174 @@ jobs:
           persist-credentials: true
           fetch-depth: 0
 
-      # =====================================
-      # 2. Setup Python
-      # =====================================
+      # ====================================
+      # 2. Python
+      # ====================================
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # =====================================
-      # 3. Install dependencies
-      # =====================================
+      # ====================================
+      # 3. Dependencies
+      # ====================================
 
       - name: Install dependencies
-        run: |
-          set -euo pipefail
-
-          sudo apt-get update
-
-          sudo apt-get install -y \
-            curl \
-            gzip \
-            jq
-
-          python -m pip install --upgrade pip
-          python -m pip install PyYAML
-
-      # =====================================
-      # 4. Download Mihomo
-      # =====================================
-
-      - name: Download latest stable Mihomo
         shell: bash
         run: |
           set -euo pipefail
 
-          API="https://api.github.com/repos/MetaCubeX/mihomo/releases/latest"
+          python -m pip install --upgrade pip
+          python -m pip install PyYAML
 
-          curl -fsSL --retry 3 \
-            -H "Accept: application/vnd.github+json" \
-            "$API" \
-            -o release.json
+          command -v curl
+          command -v jq
+          command -v gzip
+          command -v sha256sum
 
-          TAG=$(jq -r '.tag_name' release.json)
+      # ====================================
+      # 4. Download official Mihomo
+      # ====================================
+
+      - name: Download Mihomo
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          gh api \
+            repos/MetaCubeX/mihomo/releases/latest \
+            > mihomo-release.json
+
+          TAG=$(jq -r '.tag_name' mihomo-release.json)
 
           if [[ -z "$TAG" || "$TAG" == "null" ]]; then
-            echo "::error::Failed to determine Mihomo version"
+            echo "::error::Unable to read Mihomo release"
             exit 1
           fi
 
-          echo "Mihomo version: $TAG"
+          ASSET=$(jq -r '
+            [
+              .assets[]
+              | select(
+                  .name
+                  | test("^mihomo-linux-amd64-compatible-.*\\.gz$")
+                )
+            ]
+            | sort_by(.name)
+            | last
+            | .name // empty
+          ' mihomo-release.json)
 
-          ASSET="mihomo-linux-amd64-compatible-${TAG}.gz"
-
-          URL=$(jq -r --arg name "$ASSET" \
-            '.assets[] | select(.name == $name) | .browser_download_url' \
-            release.json)
-
-          if [[ -z "$URL" ]]; then
-            echo "::error::Mihomo asset not found: $ASSET"
+          if [[ -z "$ASSET" ]]; then
+            echo "::error::Compatible Mihomo asset not found"
             exit 1
           fi
 
-          echo "Downloading: $ASSET"
+          URL=$(jq -r --arg name "$ASSET" '
+            .assets[]
+            | select(.name == $name)
+            | .browser_download_url
+          ' mihomo-release.json)
 
-          curl -fL --retry 3 "$URL" -o mihomo.gz
+          DIGEST=$(jq -r --arg name "$ASSET" '
+            .assets[]
+            | select(.name == $name)
+            | .digest // empty
+          ' mihomo-release.json)
 
-          # Verify release asset SHA256
+          echo "Mihomo release: $TAG"
+          echo "Selected asset: $ASSET"
 
-          EXPECTED=$(jq -r --arg name "$ASSET" \
-            '.assets[] | select(.name == $name) | .digest' \
-            release.json)
-
-          if [[ "$EXPECTED" != sha256:* ]]; then
-            echo "::error::Missing SHA256 release digest"
+          if [[ "$DIGEST" != sha256:* ]]; then
+            echo "::error::Missing official SHA256 digest"
             exit 1
           fi
 
-          echo "${EXPECTED#sha256:}  mihomo.gz" | sha256sum -c -
+          curl -fL \
+            --retry 3 \
+            --connect-timeout 15 \
+            "$URL" \
+            -o mihomo.gz
+
+          echo "${DIGEST#sha256:}  mihomo.gz" \
+            | sha256sum -c -
 
           gzip -dc mihomo.gz > mihomo
 
           chmod +x mihomo
 
-          sudo mv mihomo /usr/local/bin/mihomo
+          sudo install -m 755 mihomo /usr/local/bin/mihomo
 
           mihomo -v
 
-      # =====================================
-      # 5. Build MRS rules and README
-      # =====================================
+      # ====================================
+      # 5. Build all rules
+      # ====================================
 
       - name: Build MRS rules
         shell: bash
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: main
         run: |
           set -euo pipefail
 
           python scripts/build.py
 
-      # =====================================
-      # 6. Verify generated files
-      # =====================================
+      # ====================================
+      # 6. Verify outputs
+      # ====================================
 
       - name: Verify outputs
         shell: bash
         run: |
           set -euo pipefail
 
-          echo "=== Verify MRS files ==="
+          echo "=== MRS checksum verification ==="
 
-          cd output
+          (
+            cd output
+            sha256sum -c SHA256SUMS
+          )
 
-          sha256sum -c SHA256SUMS
+          echo "=== Generated files ==="
 
-          count=$(find . -maxdepth 1 -name '*.mrs' | wc -l)
+          find output -maxdepth 1 -type f -print
 
-          if [ "$count" -eq 0 ]; then
+          echo "=== Repository files ==="
+
+          find rule/Clash -type f -print
+
+          MRS_COUNT=$(find output \
+            -maxdepth 1 \
+            -type f \
+            -name '*.mrs' \
+            | wc -l)
+
+          README_COUNT=$(find rule/Clash \
+            -type f \
+            -name 'README.md' \
+            | wc -l)
+
+          if [[ "$MRS_COUNT" -eq 0 ]]; then
             echo "::error::No MRS files generated"
             exit 1
           fi
 
-          echo "Generated MRS files: $count"
-
-          ls -lh *.mrs
-
-          cd ..
-
-          echo "=== Verify repository files ==="
-
-          if [ ! -d "rule/Clash" ]; then
-            echo "::error::rule/Clash directory does not exist"
+          if [[ "$README_COUNT" -lt "$MRS_COUNT" ]]; then
+            echo "::error::Missing generated README files"
             exit 1
           fi
 
-          find rule/Clash -type f
+          echo "MRS files: $MRS_COUNT"
+          echo "README files: $README_COUNT"
 
-          echo "=== Verify README files ==="
-
-          readme_count=$(find rule/Clash -name README.md | wc -l)
-
-          if [ "$readme_count" -eq 0 ]; then
-            echo "::error::No README files generated"
-            exit 1
-          fi
-
-          echo "Generated README files: $readme_count"
-
-      # =====================================
-      # 7. Upload artifacts
-      # =====================================
+      # ====================================
+      # 7. Upload artifact
+      # ====================================
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -199,25 +217,70 @@ jobs:
           retention-days: 30
           if-no-files-found: error
 
-      # =====================================
-      # 8. Publish GitHub Release
-      # =====================================
+      # ====================================
+      # 8. Commit and push
+      # ====================================
+
+      - name: Commit MRS files to repository
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A rule/Clash/
+
+          echo "=== Git status ==="
+
+          git status --short
+
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+            exit 0
+          fi
+
+          echo "=== Checking remote branch ==="
+
+          git fetch origin main
+
+          LOCAL_BASE=$(git rev-parse HEAD)
+          REMOTE_HEAD=$(git rev-parse origin/main)
+
+          if [[ "$LOCAL_BASE" != "$REMOTE_HEAD" ]]; then
+            echo "::error::main changed during build"
+            echo "Please rerun this workflow"
+            exit 1
+          fi
+
+          git commit \
+            -m "chore: update MRS rules and README"
+
+          git push origin HEAD:main
+
+          echo "Repository updated successfully"
+
+      # ====================================
+      # 9. Publish daily release
+      # ====================================
 
       - name: Publish GitHub Release
+        if: github.ref == 'refs/heads/main'
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        shell: bash
         run: |
           set -euo pipefail
 
           TAG="daily-$(date -u +%Y%m%d)"
 
-          echo "Publishing Release: $TAG"
+          echo "Publishing: $TAG"
 
           if gh release view "$TAG" >/dev/null 2>&1; then
-
-            echo "Updating existing daily release"
 
             gh release upload "$TAG" \
               output/*.mrs \
@@ -226,69 +289,14 @@ jobs:
 
           else
 
-            echo "Creating new daily release"
-
             gh release create "$TAG" \
               output/*.mrs \
               output/SHA256SUMS \
-              --title "MRS Rules ${TAG}" \
+              --target main \
+              --title "MRS Rules $TAG" \
               --notes "Automatically generated Mihomo MRS rules." \
               --latest
 
           fi
 
-          echo "GitHub Release published successfully"
-
-      # =====================================
-      # 9. Commit MRS and README
-      # =====================================
-
-      - name: Commit MRS files to repository
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          echo "=== Repository information ==="
-
-          echo "Repository: $GITHUB_REPOSITORY"
-          echo "Branch: $GITHUB_REF_NAME"
-
-          echo "=== Check generated files ==="
-
-          if [ ! -d "rule/Clash" ]; then
-            echo "::error::rule/Clash directory does not exist!"
-            exit 1
-          fi
-
-          find rule/Clash -type f
-
-          echo "=== Configure Git ==="
-
-          git config user.name "github-actions[bot]"
-
-          git config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-
-          echo "=== Stage files ==="
-
-          git add -A rule/Clash/
-
-          echo "=== Check changes ==="
-
-          git status --short
-
-          if git diff --cached --quiet; then
-            echo "No changes detected. Skipping commit."
-            exit 0
-          fi
-
-          echo "=== Commit changes ==="
-
-          git commit -m "chore: update MRS rules and README"
-
-          echo "=== Push changes ==="
-
-          git push origin HEAD:main
-
-          echo "=== Successfully published ==="
+          echo "Release published successfully"
