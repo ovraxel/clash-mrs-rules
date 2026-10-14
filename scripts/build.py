@@ -189,3 +189,99 @@ shutil.copy2(
     PUBLISH_DIR / "SHA256SUMS"
 )
 
+
+# ==========================================
+# Automatically generate README.md
+# ==========================================
+
+import os
+from datetime import datetime, timezone
+
+REPO = os.environ.get("GITHUB_REPOSITORY")
+
+if not REPO:
+    raise RuntimeError("GITHUB_REPOSITORY is not set")
+
+BRANCH = os.environ.get("GITHUB_REF_NAME", "main")
+
+if BRANCH not in ("main", "master"):
+    raise ValueError(f"Unexpected branch: {BRANCH}")
+
+DATE = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+for rule in config["rules"]:
+
+    name = rule["name"]
+    behavior = rule["behavior"]
+
+    folder = PUBLISH_DIR / name
+
+    mrs_file = folder / f"{name}.mrs"
+
+    if not mrs_file.exists():
+        raise FileNotFoundError(mrs_file)
+
+    raw_url = (
+        f"https://raw.githubusercontent.com/"
+        f"{REPO}/{BRANCH}/rule/Clash/{name}/{name}.mrs"
+    )
+
+    cdn_url = (
+        f"https://cdn.jsdelivr.net/gh/"
+        f"{REPO}@{BRANCH}/rule/Clash/{name}/{name}.mrs"
+    )
+
+    readme = f"""# {name} MRS 規則
+
+由 GitHub Actions 自動生成，適用於 Mihomo 核心。
+
+## 規則鏈接
+
+### {BRANCH.upper()} 分支（每日更新）
+
+<{raw_url}>
+
+### {BRANCH.upper()} 分支 CDN（每日更新）
+
+<{cdn_url}>
+
+## 規則資訊
+
+| 項目 | 說明 |
+|---|---|
+| 規則名稱 | {name} |
+| 文件格式 | MRS |
+| Behavior | {behavior} |
+| 更新頻率 | 每日 |
+| 最後構建日期 | {DATE} |
+
+## Mihomo 使用方法
+
+```yaml
+rule-providers:
+  {name}:
+    type: http
+    behavior: {behavior}
+    format: mrs
+    url: "{raw_url}"
+    path: ./ruleset/{name}.mrs
+    interval: 86400
+```
+
+## 上游來源
+
+<{rule["url"]}>
+
+---
+
+此 README 由 GitHub Actions 自動生成，請勿手動修改。
+"""
+
+    readme_path = folder / "README.md"
+
+    readme_path.write_text(
+        readme,
+        encoding="utf-8"
+    )
+
+    print(f"README generated: {readme_path}")
