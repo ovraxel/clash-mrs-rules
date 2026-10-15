@@ -1,5 +1,5 @@
 # NAME: Telegram-IP
-# AUTHOR: YYDS666
+# AUTHOR: wiedergeburtme
 # UPDATED: 2026-10-14 06:03:49
 # TOTAL: 31
 109.239.140.0/24
