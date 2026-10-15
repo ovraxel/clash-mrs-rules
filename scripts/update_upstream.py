@@ -89,7 +89,8 @@ def main():
                 continue
             lines = parsed[behavior]
             if not lines:
-                raise ValueError(f'{provider}/{name}: requested {behavior} has no rules')
+                print(f'{provider}/{name}: no {behavior} rules; skipping empty output', flush=True)
+                continue
             outname = name + suffix
             folder = STAGE / provider / outname
             folder.mkdir(parents=True)
@@ -103,7 +104,7 @@ def main():
             relative = f'{provider}/{outname}/{outname}.mrs'
             rawurl = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/rule/Upstream/{relative}'
             cdn = f'https://cdn.jsdelivr.net/gh/{REPO}@{BRANCH}/rule/Upstream/{relative}'
-            (folder / 'README.md').write_text(f'# {outname}\n\nUpstream: [{provider}]({url})\n\nBehavior: `{behavior}`; unique rules: {len(lines)}.\n\nProcess rules not representable in MRS were omitted: {len(ignored)}.\n\n## Raw\n\n```text\n{rawurl}\n```\n\n## CDN\n\n```text\n{cdn}\n```\n\n## Mihomo\n\n```yaml\nrule-providers:\n  {outname}:\n    type: http\n    behavior: {behavior}\n    format: mrs\n    url: "{rawurl}"\n    path: ./ruleset/{outname}.mrs\n    interval: 86400\n```\n', encoding='utf-8')
+            (folder / 'README.md').write_text(f'# {outname}\n\nUpstream: [{provider}]({url})\n\nBehavior: `{behavior}`; unique rules: {len(lines)}.\n\nProcess rules not representable in MRS were omitted: {len(ignored)}.\n\n## Raw\n\n```text\n{rawurl}\n```\n\n## CDN\n\n```text\n{cdn}\n```\n\n## Mihomo\n\n```yaml\n{outname}:\n    type: http\n    behavior: {behavior}\n    format: mrs\n    interval: 86400\n    url: {rawurl}\n```\n', encoding='utf-8')
             outputs.append((relative, hashlib.sha256(binary.read_bytes()).hexdigest()))
             print(f'{relative}: {len(lines)} rules', flush=True)
     (STAGE / 'SHA256SUMS').write_text(''.join(f'{digest}  {path}\n' for path, digest in outputs), encoding='utf-8')
