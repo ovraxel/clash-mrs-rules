@@ -19,14 +19,12 @@ https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/Teleg
 ## Mihomo 配置
 
 ```yaml
-rule-providers:
-  Telegram-IP:
+Telegram-IP:
     type: http
     behavior: ipcidr
     format: mrs
-    url: "https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/Telegram-IP/Telegram-IP.mrs"
-    path: ./ruleset/Telegram-IP.mrs
     interval: 86400
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/Telegram-IP/Telegram-IP.mrs
 ```
 
 ## TXT 來源

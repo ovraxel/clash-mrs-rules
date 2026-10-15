@@ -19,14 +19,12 @@ https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/Globa
 ## Mihomo 配置
 
 ```yaml
-rule-providers:
-  GlobalAI:
+GlobalAI:
     type: http
     behavior: domain
     format: mrs
-    url: "https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs"
-    path: ./ruleset/GlobalAI.mrs
     interval: 86400
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs
 ```
 
 ## TXT 來源

@@ -19,14 +19,12 @@ https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/Teleg
 ## Mihomo 配置
 
 ```yaml
-rule-providers:
-  Telegram:
+Telegram:
     type: http
     behavior: domain
     format: mrs
-    url: "https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/Telegram/Telegram.mrs"
-    path: ./ruleset/Telegram.mrs
     interval: 86400
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/Telegram/Telegram.mrs
 ```
 
 ## TXT 來源
