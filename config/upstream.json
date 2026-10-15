@@ -899,6 +899,124 @@
           "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia.list"
         }
       ]
+    },
+    {
+      "name": "Alibaba",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alibaba.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/alibaba"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Alibaba/Alibaba.list"
+        }
+      ]
+    },
+    {
+      "name": "WeChat",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wechat.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/wechat"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.list"
+        }
+      ]
+    },
+    {
+      "name": "AliPay",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/alipay.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/alipay"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AliPay/AliPay.list"
+        }
+      ]
+    },
+    {
+      "name": "Taobao",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/taobao.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/taobao"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Taobao/Taobao.list"
+        }
+      ]
+    },
+    {
+      "name": "AdvertisingLite",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": false,
+      "sources": [
+        {
+          "provider": "blackmatrix7",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AdvertisingLite/AdvertisingLite_Domain.txt"
+        }
+      ]
+    },
+    {
+      "name": "Privacy",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": false,
+      "sources": [
+        {
+          "provider": "blackmatrix7",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Privacy/Privacy_Domain.txt"
+        }
+      ]
     }
   ]
 }
