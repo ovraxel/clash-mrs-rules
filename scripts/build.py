@@ -73,7 +73,7 @@ def readme(name, behavior, count, source):
     raw = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/{base}'
     cdn = f'https://cdn.jsdelivr.net/gh/{REPO}@{BRANCH}/{base}'
     source_url = f'https://github.com/{REPO}/blob/{BRANCH}/{source.as_posix()}'
-    return f'''# {name} MRS\n\n由本倉庫 TXT 規則自動轉換；Behavior：`{behavior}`；去重後規則數：**{count}**。\n\n## GitHub Raw（可用程式碼區塊右上角複製）\n\n```text\n{raw}\n```\n\n[開啟／下載 MRS]({raw})\n\n## jsDelivr CDN\n\n```text\n{cdn}\n```\n\n## Mihomo 配置\n\n```yaml\nrule-providers:\n  {name}:\n    type: http\n    behavior: {behavior}\n    format: mrs\n    url: "{raw}"\n    path: ./ruleset/{name}.mrs\n    interval: 86400\n```\n\n## TXT 來源\n\n[{source.as_posix()}]({source_url})\n'''
+    return f'''# {name} MRS\n\n由本倉庫 TXT 規則自動轉換；Behavior：`{behavior}`；去重後規則數：**{count}**。\n\n## GitHub Raw（可用程式碼區塊右上角複製）\n\n```text\n{raw}\n```\n\n[開啟／下載 MRS]({raw})\n\n## jsDelivr CDN\n\n```text\n{cdn}\n```\n\n## Mihomo 配置\n\n```yaml\n{name}:\n    type: http\n    behavior: {behavior}\n    format: mrs\n    interval: 86400\n    url: {raw}\n```\n\n## TXT 來源\n\n[{source.as_posix()}]({source_url})\n'''
 
 
 def main():
