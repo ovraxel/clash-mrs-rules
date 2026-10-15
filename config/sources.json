@@ -1,8 +1,0 @@
-
-{
-  "name": "TikTok-Custom",
-  "behavior": "domain",
-  "format": "text",
-  "min_rules": 1,
-  "file": "sources/custom/TikTok-domain.txt"
-}
