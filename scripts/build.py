@@ -1,6 +1,5 @@
-
 #!/usr/bin/env python3
-
+"""Build Mihomo domain/ipcidr MRS files from remote YAML/TXT or local TXT/YAML."""
 import hashlib
 import ipaddress
 import json
@@ -13,381 +12,199 @@ from pathlib import Path
 
 import yaml
 
-
-# ==========================================
-# 1. Project paths
-# ==========================================
-
 ROOT = Path(__file__).resolve().parent.parent
-
-CONFIG = ROOT / "config" / "sources.json"
-OUTPUT = ROOT / "output"
-TEMP = ROOT / ".build"
-PUBLISH = ROOT / "rule" / "Clash"
-
-MANIFEST = ".mrs-managed.json"
-
-REPO = os.environ.get("GITHUB_REPOSITORY", "")
-BRANCH = os.environ.get("GITHUB_REF_NAME", "main")
-
-if not re.fullmatch(r"[\w.-]+/[\w.-]+", REPO):
-    raise RuntimeError(
-        "GITHUB_REPOSITORY is missing or invalid"
-    )
-
-if not re.fullmatch(r"[A-Za-z0-9._/-]+", BRANCH):
-    raise RuntimeError("Invalid branch name")
-
-
-# ==========================================
-# 2. Load configuration
-# ==========================================
-
-def load_config():
-
-    with CONFIG.open(encoding="utf-8") as f:
-        data = json.load(f)
-
-    rules = data.get("rules")
-
-    if not isinstance(rules, list) or not rules:
-        raise ValueError("No rules configured")
-
-    seen = set()
-
-    for rule in rules:
-
-        if not isinstance(rule, dict):
-            raise ValueError("Invalid rule configuration")
-
-        name = rule.get("name")
-        behavior = rule.get("behavior")
-        source_format = rule.get("format", "classical")
-        url = rule.get("url")
-        minimum = rule.get("min_rules", 1)
-
-        if not isinstance(name, str) or not re.fullmatch(
-            r"[A-Za-z0-9_-]+", name
-        ):
-            raise ValueError(f"Invalid rule name: {name}")
-
-        if name in seen:
-            raise ValueError(f"Duplicate rule name: {name}")
-
-        seen.add(name)
-
-        if behavior not in ("domain", "ipcidr"):
-            raise ValueError(
-                f"{name}: Unsupported MRS behavior"
-            )
-
-        if source_format not in (
-            "classical",
-            "domain",
-            "ipcidr",
-            "text"
-        ):
-            raise ValueError(
-                f"{name}: Unsupported source format"
-            )
-
-        if not isinstance(url, str) or not url.startswith(
-            "https://"
-        ):
-            raise ValueError(f"{name}: Invalid HTTPS URL")
-
-        if type(minimum) is not int or minimum < 1:
-            raise ValueError(
-                f"{name}: min_rules must be >= 1"
-            )
-
-    return rules
-
-
-# ==========================================
-# 3. Download upstream sources
-# ==========================================
-
+CONFIG = ROOT / 'config' / 'sources.json'
+OUTPUT = ROOT / 'output'
+TEMP = ROOT / '.build'
+PUBLISH = ROOT / 'rule' / 'Clash'
+MANIFEST = '.mrs-managed.json'
+REPO = os.environ.get('GITHUB_REPOSITORY', 'wiedergeburtme/clash-mrs-rules')
+BRANCH = os.environ.get('GITHUB_REF_NAME', 'main')
 CACHE = {}
-
-
-def download(url):
-
-    if url in CACHE:
-        return CACHE[url]
-
-    print(f"Downloading: {url}", flush=True)
-
-    request = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "Clash-MRS-Builder/2.1"
-        }
-    )
-
-    with urllib.request.urlopen(
-        request,
-        timeout=60
-    ) as response:
-
-        content = response.read(20 * 1024 * 1024 + 1)
-
-    if len(content) > 20 * 1024 * 1024:
-        raise RuntimeError("Source exceeds 20 MB")
-
-    text = content.decode("utf-8-sig")
-
-    CACHE[url] = text
-
-    return text
-
-
-# ==========================================
-# 4. Parse YAML / TXT
-# ==========================================
-
-def parse_source(content, source_format):
-
-    if source_format == "text":
-        return content.splitlines()
-
-    data = yaml.safe_load(content)
-
-    if not isinstance(data, dict):
-        raise ValueError("Expected a YAML mapping")
-
-    payload = data.get("payload")
-
-    if not isinstance(payload, list) or not payload:
-        raise ValueError("Missing or empty YAML payload")
-
-    if not all(isinstance(x, str) for x in payload):
-        raise ValueError(
-            "YAML payload must contain strings"
-        )
-
-    return payload
-
-
-# ==========================================
-# 5. Domain normalization
-# ==========================================
-
-DOMAIN_PATTERN = re.compile(
-    r"^(?=.{1,253}$)"
-    r"(?:[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?\.)+"
-    r"[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?$",
-    re.IGNORECASE
-)
+NAME_RE = re.compile(r'[A-Za-z0-9_-]+\Z')
+DOMAIN_LABEL = re.compile(r'[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?\Z', re.I)
 
 
 def valid_domain(value):
-    return bool(DOMAIN_PATTERN.fullmatch(value))
+    return bool(value and len(value) <= 253 and all(DOMAIN_LABEL.fullmatch(label) for label in value.split('.')))
 
 
 def valid_keyword(value):
-
-    return bool(
-        value
-        and len(value) <= 253
-        and not any(c.isspace() for c in value)
-        and "," not in value
-    )
+    return bool(value and len(value) <= 253 and not any(ch.isspace() for ch in value) and ',' not in value)
 
 
-def normalize_domain(raw, source_format):
+def load_config():
+    with CONFIG.open(encoding='utf-8') as stream:
+        rules = json.load(stream).get('rules')
+    if not isinstance(rules, list) or not rules:
+        raise ValueError('config/sources.json: rules must be a nonempty list')
+    seen = set()
+    for rule in rules:
+        if not isinstance(rule, dict):
+            raise ValueError('Each rule must be an object')
+        name = rule.get('name')
+        behavior = rule.get('behavior')
+        fmt = rule.get('format', 'classical')
+        minimum = rule.get('min_rules', 1)
+        if not isinstance(name, str) or not NAME_RE.fullmatch(name) or name in seen:
+            raise ValueError(f'Invalid or duplicate rule name: {name}')
+        seen.add(name)
+        if behavior not in ('domain', 'ipcidr'):
+            raise ValueError(f'{name}: behavior must be domain or ipcidr')
+        if fmt not in ('classical', 'domain', 'ipcidr', 'text', 'yaml'):
+            raise ValueError(f'{name}: unsupported format {fmt}')
+        if fmt == 'domain' and behavior != 'domain' or fmt == 'ipcidr' and behavior != 'ipcidr':
+            raise ValueError(f'{name}: source format and behavior disagree')
+        if type(minimum) is not int or minimum < 1:
+            raise ValueError(f'{name}: min_rules must be a positive integer')
+        validate_source(rule, name)
+        extras = rule.get('extra_urls', [])
+        if not isinstance(extras, list):
+            raise ValueError(f'{name}: extra_urls must be a list')
+        for extra in extras:
+            if not isinstance(extra, dict) or extra.get('format') not in ('classical', 'domain', 'ipcidr', 'text', 'yaml'):
+                raise ValueError(f'{name}: invalid extra source')
+            if extra['format'] == 'domain' and behavior != 'domain' or extra['format'] == 'ipcidr' and behavior != 'ipcidr':
+                raise ValueError(f'{name}: extra source format and behavior disagree')
+            validate_source(extra, name)
+    return rules
 
+
+def validate_source(item, name):
+    url, filename = item.get('url'), item.get('file')
+    if (url is None) == (filename is None):
+        raise ValueError(f'{name}: specify exactly one of url or file')
+    if url is not None and (not isinstance(url, str) or not url.startswith('https://')):
+        raise ValueError(f'{name}: URL must use HTTPS')
+    if filename is not None and (not isinstance(filename, str) or not filename.strip()):
+        raise ValueError(f'{name}: invalid local file path')
+    if filename is not None:
+        local_path(filename)  # validate traversal before build
+
+
+def local_path(filename):
+    path = (ROOT / filename).resolve()
+    if not path.is_relative_to(ROOT.resolve()) or not path.is_file():
+        raise ValueError(f'Unsafe or missing local source: {filename}')
+    return path
+
+
+def read_source(item):
+    if item.get('file') is not None:
+        return local_path(item['file']).read_text(encoding='utf-8-sig')
+    url = item['url']
+    if url not in CACHE:
+        print(f'Downloading {url}', flush=True)
+        req = urllib.request.Request(url, headers={'User-Agent': 'clash-mrs-rules/3.0'})
+        with urllib.request.urlopen(req, timeout=60) as response:
+            data = response.read(20 * 1024 * 1024 + 1)
+        if len(data) > 20 * 1024 * 1024:
+            raise RuntimeError(f'Source larger than 20 MB: {url}')
+        CACHE[url] = data.decode('utf-8-sig')
+    return CACHE[url]
+
+
+def parse_source(content, fmt):
+    if fmt == 'text':
+        return content.splitlines()
+    parsed = yaml.safe_load(content)
+    if not isinstance(parsed, dict) or not isinstance(parsed.get('payload'), list):
+        raise ValueError('YAML source must contain a payload list')
+    payload = parsed['payload']
+    if not all(isinstance(line, str) for line in payload):
+        raise ValueError('YAML payload entries must be strings')
+    return payload
+
+
+def normalize_domain(raw, fmt):
     line = raw.strip().strip("'\"").strip()
-
-    if not line or line.startswith("#"):
+    if not line or line.startswith('#'):
         return None
-
-    if source_format == "classical":
-
-        parts = [x.strip() for x in line.split(",")]
-
+    if fmt in ('classical', 'yaml'):
+        parts = [part.strip() for part in line.split(',')]
         if len(parts) < 2:
             return None
-
-        kind = parts[0].upper()
-        value = parts[1].lower()
-
-        if kind == "DOMAIN":
-            if valid_domain(value):
-                return "full:" + value
-            return None
-
-        if kind == "DOMAIN-SUFFIX":
-            if valid_domain(value):
-                return "+." + value
-            return None
-
-        if kind == "DOMAIN-KEYWORD":
-            if valid_keyword(value):
-                return "keyword:" + value
-            return None
-
+        kind, value = parts[0].upper(), parts[1].lower()
+        if kind == 'DOMAIN' and valid_domain(value):
+            return 'full:' + value
+        if kind == 'DOMAIN-SUFFIX' and valid_domain(value):
+            return '+.' + value
+        if kind == 'DOMAIN-KEYWORD' and valid_keyword(value):
+            return 'keyword:' + value
         return None
-
-    # Native domain or plain text rules
-
     line = line.lower()
-
-    if line.startswith("full:"):
-
-        value = line[5:]
-
-        return line if valid_domain(value) else None
-
-    if line.startswith("keyword:"):
-
-        value = line[8:]
-
-        return line if valid_keyword(value) else None
-
-    if line.startswith("+."):
-
-        value = line[2:]
-
-        return line if valid_domain(value) else None
-
-    if line.startswith("*."):
-
-        value = line[2:]
-
-        return line if valid_domain(value) else None
-
-    if line.startswith("."):
-
-        value = line[1:]
-
-        if valid_domain(value):
-            return "+." + value
-
-        return None
-
-    if valid_domain(line):
-        return line
-
-    return None
+    if line.startswith('full:'):
+        return line if valid_domain(line[5:]) else None
+    if line.startswith('keyword:'):
+        return line if valid_keyword(line[8:]) else None
+    if line.startswith(('+.', '*.')):
+        return line if valid_domain(line[2:]) else None
+    if line.startswith('.'):
+        return '+.' + line[1:] if valid_domain(line[1:]) else None
+    return line if valid_domain(line) else None
 
 
-# ==========================================
-# 6. IP normalization
-# ==========================================
-
-def normalize_ip(raw, source_format):
-
+def normalize_ip(raw, fmt):
     line = raw.strip().strip("'\"").strip()
-
-    if not line or line.startswith("#"):
+    if not line or line.startswith('#'):
         return None
-
-    if source_format == "classical":
-
-        parts = [x.strip() for x in line.split(",")]
-
-        if len(parts) < 2:
+    if fmt in ('classical', 'yaml'):
+        parts = [part.strip() for part in line.split(',')]
+        if len(parts) < 2 or parts[0].upper() not in ('IP-CIDR', 'IP-CIDR6'):
             return None
-
-        kind = parts[0].upper()
-
-        if kind not in ("IP-CIDR", "IP-CIDR6"):
-            return None
-
         line = parts[1]
-
-    elif "," in line:
+    elif ',' in line:
         return None
-
     try:
-
-        network = ipaddress.ip_network(
-            line,
-            strict=False
-        )
-
-        return str(network)
-
+        return str(ipaddress.ip_network(line, strict=False))
     except ValueError:
         return None
 
 
-# ==========================================
-# 7. Generate README
-# ==========================================
+def source_reference(item):
+    if item.get('file') is not None:
+        return f"https://github.com/{REPO}/blob/{BRANCH}/{item['file']}"
+    return item['url']
+
 
 def generate_readme(rule, count):
+    name, behavior = rule['name'], rule['behavior']
+    raw = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/rule/Clash/{name}/{name}.mrs'
+    cdn = f'https://cdn.jsdelivr.net/gh/{REPO}@{BRANCH}/rule/Clash/{name}/{name}.mrs'
+    sources = [rule] + rule.get('extra_urls', [])
+    refs = '\n'.join(f'- <{source_reference(item)}>' for item in sources)
+    note = ('\n> Classical 來源只提取與本 MRS behavior 相容的規則；不支援的類型不會轉入。\n'
+            if any(item.get('format', 'classical') in ('classical', 'yaml') for item in sources) else '')
+    return f'''# {name} MRS 規則
 
-    name = rule["name"]
-    behavior = rule["behavior"]
-    source_format = rule.get("format", "classical")
+由 GitHub Actions 自動生成，適用於 Mihomo。
 
-    raw_url = (
-        f"https://raw.githubusercontent.com/"
-        f"{REPO}/{BRANCH}/rule/Clash/"
-        f"{name}/{name}.mrs"
-    )
-
-    cdn_url = (
-        f"https://cdn.jsdelivr.net/gh/"
-        f"{REPO}@{BRANCH}/rule/Clash/"
-        f"{name}/{name}.mrs"
-    )
-
-    notice = ""
-
-    if source_format == "classical":
-
-        notice = (
-            "\n> 注意：此 MRS 從 Classical 規則中提取"
-            "相容的域名或 IP 規則，並非原始 YAML "
-            "的完整等價轉換。\n"
-        )
-
-    # Use GitHub native code-block copy buttons.
-    # No custom JavaScript is required.
-
-    return f"""# {name} MRS 規則
-
-由 GitHub Actions 自動生成，適用於 Mihomo 核心。
-
-## MRS 下載地址
-
-### GitHub Raw
-
-點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
+## GitHub Raw（使用程式碼區塊右上角按鈕複製）
 
 ```text
-{raw_url}
+{raw}
 ```
 
-**[直接下載 MRS]({raw_url})**
+[開啟／下載 MRS]({raw})
 
-### jsDelivr CDN
-
-點擊下方程式碼區塊右上角的複製圖示，即可複製完整地址。
+## jsDelivr CDN
 
 ```text
-{cdn_url}
+{cdn}
 ```
 
-**[開啟 CDN 地址]({cdn_url})**
+[開啟 CDN 地址]({cdn})
 
 ## 規則資訊
 
 | 項目 | 內容 |
 |---|---|
-| 規則名稱 | {name} |
-| 文件格式 | MRS |
+| 名稱 | {name} |
 | Behavior | {behavior} |
-| 規則數量 | {count} |
+| 去重後規則數 | {count} |
 | 更新頻率 | 每日 |
-
-{notice}
-## Mihomo 使用方法
-
-以下配置可使用右上角的複製按鈕，一鍵複製整段。
+{note}
+## Mihomo 配置
 
 ```yaml
 rule-providers:
@@ -395,334 +212,99 @@ rule-providers:
     type: http
     behavior: {behavior}
     format: mrs
-    url: "{raw_url}"
+    url: "{raw}"
     path: ./ruleset/{name}.mrs
     interval: 86400
 ```
 
-## 上游來源
+## 來源
 
-<{rule["url"]}>
+{refs}
 
 ---
 
 此 README 由 GitHub Actions 自動生成。
-"""
+'''
 
-
-# ==========================================
-# 8. Build individual MRS
-# ==========================================
 
 def build_rule(rule, stage):
-
-    name = rule["name"]
-    behavior = rule["behavior"]
-    source_format = rule.get("format", "classical")
-
-    print(
-        f"\n=== Building {name} ({behavior}) ===",
-        flush=True
-    )
-
-    content = download(rule["url"])
-
-    payload = parse_source(
-        content,
-        source_format
-    )
-
+    name, behavior = rule['name'], rule['behavior']
+    sources = [rule] + rule.get('extra_urls', [])
     converted = set()
     skipped = 0
-
-    for raw in payload:
-
-        if behavior == "domain":
-
-            value = normalize_domain(
-                raw,
-                source_format
-            )
-
-        else:
-
-            value = normalize_ip(
-                raw,
-                source_format
-            )
-
-        if value:
-            converted.add(value)
-        else:
-            skipped += 1
-
-    minimum = rule.get("min_rules", 1)
-
-    if len(converted) < minimum:
-
-        raise RuntimeError(
-            f"{name}: only {len(converted)} valid rules; "
-            f"minimum is {minimum}"
-        )
-
-    source = TEMP / f"{name}.txt"
-    target = OUTPUT / f"{name}.mrs"
-
-    source.write_text(
-        "\n".join(sorted(converted)) + "\n",
-        encoding="utf-8"
-    )
-
-    subprocess.run(
-        [
-            "mihomo",
-            "convert-ruleset",
-            behavior,
-            "text",
-            str(source),
-            str(target)
-        ],
-        check=True
-    )
-
+    for item in sources:
+        fmt = item.get('format', 'classical')
+        payload = parse_source(read_source(item), fmt)
+        valid = 0
+        for raw in payload:
+            value = normalize_domain(raw, fmt) if behavior == 'domain' else normalize_ip(raw, fmt)
+            if value is not None:
+                converted.add(value)
+                valid += 1
+            elif raw.strip() and not raw.lstrip().startswith('#'):
+                skipped += 1
+        print(f'{name}: {source_reference(item)}: recognized={valid}', flush=True)
+    if len(converted) < rule.get('min_rules', 1):
+        raise RuntimeError(f'{name}: only {len(converted)} valid rules')
+    source = TEMP / f'{name}.txt'
+    target = OUTPUT / f'{name}.mrs'
+    source.write_text('\n'.join(sorted(converted)) + '\n', encoding='utf-8')
+    subprocess.run(['mihomo', 'convert-ruleset', behavior, 'text', str(source), str(target)], check=True)
     if not target.is_file() or target.stat().st_size == 0:
-
-        raise RuntimeError(
-            f"{name}: missing or empty MRS"
-        )
-
+        raise RuntimeError(f'{name}: missing or empty MRS')
     folder = stage / name
+    folder.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(target, folder / target.name)
+    (folder / 'README.md').write_text(generate_readme(rule, len(converted)), encoding='utf-8')
+    print(f'{name}: unique={len(converted)}, unconverted/other-behavior={skipped}, bytes={target.stat().st_size}', flush=True)
 
-    folder.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
-    shutil.copyfile(
-        target,
-        folder / f"{name}.mrs"
-    )
-
-    (folder / "README.md").write_text(
-        generate_readme(
-            rule,
-            len(converted)
-        ),
-        encoding="utf-8"
-    )
-
-    print(
-        f"SUCCESS: {name} | "
-        f"valid={len(converted)} | "
-        f"skipped={skipped} | "
-        f"size={target.stat().st_size}",
-        flush=True
-    )
-
-
-# ==========================================
-# 9. Generate SHA256SUMS
-# ==========================================
 
 def generate_checksums(stage):
-
-    lines = []
-
-    files = sorted(
-        OUTPUT.glob("*.mrs")
-    )
-
+    files = sorted(OUTPUT.glob('*.mrs'))
     if not files:
-        raise RuntimeError("No MRS files generated")
+        raise RuntimeError('No MRS files generated')
+    lines = [f'{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}' for path in files]
+    contents = '\n'.join(lines) + '\n'
+    (OUTPUT / 'SHA256SUMS').write_text(contents, encoding='utf-8')
+    (stage / 'SHA256SUMS').write_text(contents, encoding='utf-8')
+    subprocess.run(['sha256sum', '-c', 'SHA256SUMS'], cwd=OUTPUT, check=True)
 
-    for path in files:
-
-        digest = hashlib.sha256(
-            path.read_bytes()
-        ).hexdigest()
-
-        lines.append(
-            f"{digest}  {path.name}"
-        )
-
-    content = "\n".join(lines) + "\n"
-
-    (OUTPUT / "SHA256SUMS").write_text(
-        content,
-        encoding="utf-8"
-    )
-
-    (stage / "SHA256SUMS").write_text(
-        content,
-        encoding="utf-8"
-    )
-
-    subprocess.run(
-        [
-            "sha256sum",
-            "-c",
-            "SHA256SUMS"
-        ],
-        cwd=OUTPUT,
-        check=True
-    )
-
-
-# ==========================================
-# 10. Publish completed build
-# ==========================================
 
 def publish(stage, rules):
-
-    PUBLISH.mkdir(
-        parents=True,
-        exist_ok=True
-    )
-
+    PUBLISH.mkdir(parents=True, exist_ok=True)
     manifest_path = PUBLISH / MANIFEST
-
     previous = []
-
     if manifest_path.exists():
-
-        manifest = json.loads(
-            manifest_path.read_text(
-                encoding="utf-8"
-            )
-        )
-
-        previous = manifest.get(
-            "managed_rules",
-            []
-        )
-
-        if not isinstance(previous, list):
-            raise RuntimeError(
-                "Invalid previous manifest"
-            )
-
-        for name in previous:
-
-            if not isinstance(name, str) or not re.fullmatch(
-                r"[A-Za-z0-9_-]+",
-                name
-            ):
-
-                raise RuntimeError(
-                    "Unsafe entry in previous manifest"
-                )
-
-    current = [
-        rule["name"]
-        for rule in rules
-    ]
-
-    # Remove only previously managed folders.
-
+        previous = json.loads(manifest_path.read_text(encoding='utf-8')).get('managed_rules', [])
+        if not isinstance(previous, list) or any(not isinstance(n, str) or not NAME_RE.fullmatch(n) for n in previous):
+            raise ValueError('Invalid managed rules manifest')
+    current = [rule['name'] for rule in rules]
     for name in previous:
-
-        if name not in current:
-
-            old_folder = PUBLISH / name
-
-            if old_folder.is_dir():
-
-                shutil.rmtree(old_folder)
-
-                print(
-                    f"Removed old rule: {name}"
-                )
-
-    # Copy all successfully generated files.
-
+        if name not in current and (PUBLISH / name).is_dir():
+            shutil.rmtree(PUBLISH / name)
     for name in current:
+        destination = PUBLISH / name
+        destination.mkdir(parents=True, exist_ok=True)
+        for filename in (f'{name}.mrs', 'README.md'):
+            shutil.copyfile(stage / name / filename, destination / filename)
+    shutil.copyfile(stage / 'SHA256SUMS', PUBLISH / 'SHA256SUMS')
+    manifest_path.write_text(json.dumps({'managed_rules': sorted(current)}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-        source_folder = stage / name
-        target_folder = PUBLISH / name
-
-        target_folder.mkdir(
-            parents=True,
-            exist_ok=True
-        )
-
-        for filename in (
-            f"{name}.mrs",
-            "README.md"
-        ):
-
-            shutil.copyfile(
-                source_folder / filename,
-                target_folder / filename
-            )
-
-    shutil.copyfile(
-        stage / "SHA256SUMS",
-        PUBLISH / "SHA256SUMS"
-    )
-
-    manifest = {
-        "managed_rules": sorted(current)
-    }
-
-    manifest_path.write_text(
-        json.dumps(
-            manifest,
-            ensure_ascii=False,
-            indent=2
-        ) + "\n",
-        encoding="utf-8"
-    )
-
-
-# ==========================================
-# 11. Main
-# ==========================================
 
 def main():
-
     rules = load_config()
-
-    # Clean temporary directories only.
-
     for folder in (OUTPUT, TEMP):
-
         if folder.exists():
             shutil.rmtree(folder)
-
         folder.mkdir(parents=True)
-
-    stage = TEMP / "publish"
-
-    stage.mkdir(
-        parents=True
-    )
-
-    # Build all rules first.
-
+    stage = TEMP / 'publish'
+    stage.mkdir(parents=True)
     for rule in rules:
-
-        build_rule(
-            rule,
-            stage
-        )
-
-    # Verify SHA256 before publishing.
-
+        build_rule(rule, stage)
     generate_checksums(stage)
-
-    # Update repository files only after
-    # every rule has been built successfully.
-
-    publish(
-        stage,
-        rules
-    )
-
-    print(
-        "\nAll MRS rules built and published successfully.",
-        flush=True
-    )
+    publish(stage, rules)
+    print('All MRS files built and published successfully.', flush=True)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
