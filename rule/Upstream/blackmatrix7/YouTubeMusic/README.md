@@ -1,9 +1,10 @@
 # YouTubeMusic
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTubeMusic/YouTubeMusic.list
 
-Behavior: `domain`; unique rules: 1.
+Behavior: `domain`; unique rules: 179.
 
 Unsupported entries skipped: 0.
 

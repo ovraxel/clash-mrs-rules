@@ -1,9 +1,11 @@
 # GitHub
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/github
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list
 
-Behavior: `domain`; unique rules: 31.
+Behavior: `domain`; unique rules: 102.
 
 Unsupported entries skipped: 0.
 

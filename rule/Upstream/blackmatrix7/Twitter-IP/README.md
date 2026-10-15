@@ -1,9 +1,12 @@
 # Twitter-IP
 
-Sources (1):
+Sources (4):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitter.list
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/twitter.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/twitter
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list
 
-Behavior: `ipcidr`; unique rules: 6.
+Behavior: `ipcidr`; unique rules: 22.
 
 Unsupported entries skipped: 0.
 

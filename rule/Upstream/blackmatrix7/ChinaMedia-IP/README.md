@@ -1,6 +1,7 @@
 # ChinaMedia-IP
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media-cn.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.list
 
 Behavior: `ipcidr`; unique rules: 84.

@@ -1,6 +1,8 @@
 # Twitch-IP
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/twitch.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/twitch
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch.list
 
 Behavior: `ipcidr`; unique rules: 12.

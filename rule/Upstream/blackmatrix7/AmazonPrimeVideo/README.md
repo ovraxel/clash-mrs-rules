@@ -1,9 +1,10 @@
 # AmazonPrimeVideo
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/primevideo.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo.list
 
-Behavior: `domain`; unique rules: 25.
+Behavior: `domain`; unique rules: 36.
 
 Unsupported entries skipped: 1.
 

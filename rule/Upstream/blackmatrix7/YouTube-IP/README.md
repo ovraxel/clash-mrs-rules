@@ -1,6 +1,8 @@
 # YouTube-IP
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/youtube
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list
 
 Behavior: `ipcidr`; unique rules: 3.

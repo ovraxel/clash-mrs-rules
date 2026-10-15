@@ -1,9 +1,10 @@
 # ChinaMedia
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-media-cn.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.list
 
-Behavior: `domain`; unique rules: 321.
+Behavior: `domain`; unique rules: 720.
 
 Unsupported entries skipped: 6.
 

@@ -1,11 +1,14 @@
 # Google
 
-Sources (1):
+Sources (4):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list
 
-Behavior: `domain`; unique rules: 690.
+Behavior: `domain`; unique rules: 1377.
 
-Unsupported entries skipped: 6.
+Unsupported entries skipped: 8.
 
 ## Raw
 

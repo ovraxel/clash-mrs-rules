@@ -1,9 +1,10 @@
 # Epic
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/epicgames.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list
 
-Behavior: `domain`; unique rules: 15.
+Behavior: `domain`; unique rules: 31.
 
 Unsupported entries skipped: 0.
 

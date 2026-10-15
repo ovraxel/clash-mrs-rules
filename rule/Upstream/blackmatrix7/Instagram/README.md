@@ -1,9 +1,11 @@
 # Instagram
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/instagram
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.list
 
-Behavior: `domain`; unique rules: 4.
+Behavior: `domain`; unique rules: 76.
 
 Unsupported entries skipped: 0.
 

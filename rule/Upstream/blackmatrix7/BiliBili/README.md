@@ -1,9 +1,11 @@
 # BiliBili
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/bilibili
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.list
 
-Behavior: `domain`; unique rules: 115.
+Behavior: `domain`; unique rules: 121.
 
 Unsupported entries skipped: 6.
 

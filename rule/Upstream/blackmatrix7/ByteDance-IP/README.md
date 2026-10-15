@@ -1,11 +1,13 @@
 # ByteDance-IP
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bytedance.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/bytedance
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ByteDance/ByteDance.list
 
 Behavior: `ipcidr`; unique rules: 1.
 
-Unsupported entries skipped: 1.
+Unsupported entries skipped: 2.
 
 ## Raw
 

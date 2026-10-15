@@ -1,9 +1,12 @@
 # Facebook
 
-Sources (1):
+Sources (4):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/facebook.list
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/facebook
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.list
 
-Behavior: `domain`; unique rules: 546.
+Behavior: `domain`; unique rules: 553.
 
 Unsupported entries skipped: 1.
 

@@ -1,9 +1,10 @@
 # Copilot
 
-Sources (1):
+Sources (2):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.list
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list
 
-Behavior: `domain`; unique rules: 47.
+Behavior: `domain`; unique rules: 794.
 
 Unsupported entries skipped: 2.
 

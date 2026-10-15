@@ -1,9 +1,11 @@
 # OneDrive
 
-Sources (1):
+Sources (3):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/onedrive
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive.list
 
-Behavior: `domain`; unique rules: 16.
+Behavior: `domain`; unique rules: 25.
 
 Unsupported entries skipped: 2.
 
