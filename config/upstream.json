@@ -7,6 +7,318 @@
       "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ByteDance/ByteDance.list",
       "domain": true,
       "ipcidr": true
+    },
+    {
+      "name": "China",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "ChinaMedia",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMedia/ChinaMedia.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "BiliBili",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "NetEaseMusic",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "TencentVideo",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TencentVideo/TencentVideo.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "CCTV",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/CCTV/CCTV.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Baidu",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "XiaoMi",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/XiaoMi/XiaoMi.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Huawei",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Huawei/Huawei.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Weibo",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Weibo/Weibo.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Google",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "YouTube",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "YouTubeMusic",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTubeMusic/YouTubeMusic.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Telegram",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Apple",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "AppleMusic",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleMusic/AppleMusic.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "AppleTV",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AppleTV/AppleTV.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Microsoft",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "OneDrive",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OneDrive/OneDrive.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "GitHub",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Netflix",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Disney",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Spotify",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "TikTok",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Facebook",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Instagram",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Instagram/Instagram.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "WhatsApp",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WhatsApp/WhatsApp.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Twitter",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Reddit",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Reddit/Reddit.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Discord",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Discord/Discord.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Twitch",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitch/Twitch.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Steam",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Epic",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "OpenAI",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Claude",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Gemini",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "Copilot",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "AmazonPrimeVideo",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AmazonPrimeVideo/AmazonPrimeVideo.list",
+      "domain": true,
+      "ipcidr": true
+    },
+    {
+      "name": "GlobalMedia",
+      "provider": "blackmatrix7",
+      "format": "classical-list",
+      "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia.list",
+      "domain": true,
+      "ipcidr": true
     }
   ]
 }
