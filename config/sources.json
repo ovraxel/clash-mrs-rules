@@ -1,0 +1,17 @@
+
+{
+  "rules": [
+    {
+      "name": "Telegram",
+      "behavior": "domain",
+      "format": "text",
+      "file": "sources/domain/Telegram.txt"
+    },
+    {
+      "name": "Telegram-IP",
+      "behavior": "ipcidr",
+      "format": "text",
+      "file": "sources/ip/Telegram-IP.txt"
+    }
+  ]
+}
