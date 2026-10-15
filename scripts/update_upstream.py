@@ -57,6 +57,87 @@ def parse(content):
             raise ValueError(f'Line {number}: unsupported rule: {line}')
     return {'domain': sorted(domains), 'ipcidr': sorted(ips)}, ignored
 
+def fetch(url):
+    if not url.startswith('https://raw.githubusercontent.com/'):
+        raise ValueError(f'Unapproved source URL: {url}')
+    req = urllib.request.Request(url, headers={'User-Agent': 'clash-mrs-rules-upstream/2.0'})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            raw = resp.read(20 * 1024 * 1024 + 1)
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            print(f'WARNING: HTTP 404; skipping source: {url}', flush=True)
+            return None
+        raise RuntimeError(f'HTTP {exc.code} fetching {url}') from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f'Network error fetching {url}: {exc.reason}') from exc
+    if len(raw) > 20 * 1024 * 1024:
+        raise ValueError(f'Source too large: {url}')
+    return raw.decode('utf-8-sig')
+
+def parse_mihomo(content, behavior):
+    result = set()
+    for n, raw in enumerate(content.splitlines(), 1):
+        line = raw.strip().lstrip('\ufeff')
+        if not line or line.startswith('#'):
+            continue
+        line = line.split(' #', 1)[0].strip()
+        if behavior == 'domain':
+            if line.startswith('+.'):
+                result.add('+.' + domain(line[2:]))
+            elif line.startswith('full:'):
+                result.add('full:' + domain(line[5:]))
+            elif line.startswith('keyword:'):
+                value = line[8:].lower()
+                if not value or any(c.isspace() for c in value):
+                    raise ValueError(f'Invalid keyword at line {n}')
+                result.add('keyword:' + value)
+            elif line.startswith('.'):
+                result.add('+.' + domain(line[1:]))
+            else:
+                result.add('+.' + domain(line))
+        else:
+            result.add(str(ipaddress.ip_network(line, strict=False)))
+    return result
+
+def parse_geosite(content, url, visited, depth=0):
+    if depth > 12:
+        raise ValueError('Geosite include depth exceeded')
+    result, ignored = set(), []
+    for n, raw in enumerate(content.splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            continue
+        line = line.split(' @', 1)[0].split(' #', 1)[0].strip()
+        if not line:
+            continue
+        if line.startswith('include:'):
+            target = line[8:].strip()
+            if not re.fullmatch(r'[A-Za-z0-9_.-]+', target):
+                raise ValueError(f'Invalid Geosite include: {target}')
+            child = url.rsplit('/', 1)[0] + '/' + target
+            if child in visited:
+                continue
+            visited.add(child)
+            raw_child = fetch(child)
+            if raw_child is None:
+                raise RuntimeError(f'Missing Geosite include: {child}')
+            extra, extra_ignored = parse_geosite(raw_child, child, visited, depth + 1)
+            result.update(extra)
+            ignored.extend(extra_ignored)
+        elif line.startswith('regexp:'):
+            ignored.append(f'{n}: unsupported regexp: {line}')
+        elif line.startswith('full:'):
+            result.add('full:' + domain(line[5:]))
+        elif line.startswith('keyword:'):
+            value = line[8:].lower()
+            if not value or any(c.isspace() for c in value):
+                raise ValueError(f'Invalid Geosite keyword: {line}')
+            result.add('keyword:' + value)
+        else:
+            result.add('+.' + domain(line))
+    return result, ignored
+
 def main():
     data = json.loads(CONFIG.read_text(encoding='utf-8'))
     rules = data.get('rules')
@@ -67,38 +148,53 @@ def main():
     if STAGE.exists():
         shutil.rmtree(STAGE)
     STAGE.mkdir(parents=True)
-    outputs, used = [], set()
-    missing_sources = set()
+    outputs, used, missing_sources = [], set(), set()
     for rule in rules:
-        provider, name, url = rule['provider'], rule['name'], rule['url']
+        provider, name = rule['provider'], rule['name']
         if not NAME.fullmatch(provider) or not NAME.fullmatch(name) or (provider.casefold(), name.casefold()) in used:
             raise ValueError('Invalid or duplicate provider/name')
         used.add((provider.casefold(), name.casefold()))
-        if rule.get('format') != 'classical-list' or not url.startswith('https://raw.githubusercontent.com/'):
-            raise ValueError('Only HTTPS raw classical-list source supported')
-        req = urllib.request.Request(url, headers={'User-Agent': 'clash-mrs-rules-upstream/1.0'})
-        try:
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                raw = resp.read(20 * 1024 * 1024 + 1)
-        except urllib.error.HTTPError as exc:
-            if exc.code == 404:
-                print(f'WARNING: {provider}/{name}: source returned HTTP 404; skipping: {url}', flush=True)
-                missing_sources.add((provider, name))
+        sources = rule.get('sources')
+        if sources is None:
+            sources = [{'provider': provider, 'format': rule['format'], 'url': rule['url']}]
+        if not isinstance(sources, list) or not sources:
+            raise ValueError(f'{provider}/{name}: sources must be nonempty list')
+        combined = {'domain': set(), 'ipcidr': set()}
+        ignored, successful, source_details = [], 0, []
+        for item in sources:
+            url, fmt = item['url'], item['format']
+            if fmt not in ('classical-list', 'mihomo-domain', 'mihomo-ipcidr', 'geosite'):
+                raise ValueError(f'Unsupported format: {fmt}')
+            raw = fetch(url)
+            if raw is None:
                 continue
-            raise RuntimeError(f'{provider}/{name}: HTTP {exc.code} fetching {url}') from exc
-        except urllib.error.URLError as exc:
-            raise RuntimeError(f'{provider}/{name}: network error fetching {url}: {exc.reason}') from exc
-        if len(raw) > 20 * 1024 * 1024:
-            raise ValueError('Upstream source too large')
-        parsed, ignored = parse(raw.decode('utf-8-sig'))
+            if fmt == 'classical-list':
+                parsed, skipped = parse(raw)
+                for behavior in combined:
+                    combined[behavior].update(parsed[behavior])
+            elif fmt == 'geosite':
+                parsed_domain, skipped = parse_geosite(raw, url, {url})
+                combined['domain'].update(parsed_domain)
+            else:
+                behavior = 'domain' if fmt == 'mihomo-domain' else 'ipcidr'
+                combined[behavior].update(parse_mihomo(raw, behavior))
+                skipped = []
+            successful += 1
+            ignored.extend(f'{url}: {x}' for x in skipped)
+            source_details.append(url)
+            print(f'{provider}/{name}: source {fmt} loaded: {url}', flush=True)
+        if not successful:
+            print(f'WARNING: {provider}/{name}: all sources returned 404; preserving previous output', flush=True)
+            missing_sources.add((provider, name))
+            continue
         if ignored:
-            print(f'{provider}/{name}: rules not representable as domain/ipcidr MRS ignored: {ignored}', flush=True)
+            print(f'{provider}/{name}: unsupported entries skipped ({len(ignored)}): {ignored[:30]}', flush=True)
         for behavior, enabled, suffix in (('domain', rule.get('domain', False), ''), ('ipcidr', rule.get('ipcidr', False), '-IP')):
             if not isinstance(enabled, bool):
                 raise ValueError('domain/ipcidr must be booleans')
             if not enabled:
                 continue
-            lines = parsed[behavior]
+            lines = sorted(combined[behavior])
             if not lines:
                 print(f'{provider}/{name}: no {behavior} rules; skipping empty output', flush=True)
                 continue
@@ -113,11 +209,20 @@ def main():
                 raise RuntimeError(f'{outname}: missing MRS')
             source.unlink()
             relative = f'{provider}/{outname}/{outname}.mrs'
-            rawurl = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/rule/Upstream/{relative}'
+            rawurl = f'https://raw.githubusercontent.com/{REPO}/refs/heads/{BRANCH}/rule/Upstream/{relative}'
             cdn = f'https://cdn.jsdelivr.net/gh/{REPO}@{BRANCH}/rule/Upstream/{relative}'
-            (folder / 'README.md').write_text(f'# {outname}\n\nUpstream: [{provider}]({url})\n\nBehavior: `{behavior}`; unique rules: {len(lines)}.\n\nNon-domain/IP rules omitted: {len(ignored)}.\n\n## Raw\n\n```text\n{rawurl}\n```\n\n## CDN\n\n```text\n{cdn}\n```\n\n## Mihomo\n\n```yaml\n{outname}:\n    type: http\n    behavior: {behavior}\n    format: mrs\n    interval: 86400\n    url: {rawurl}\n```\n', encoding='utf-8')
+            provenance = '\n'.join(f'- {u}' for u in source_details)
+            readme = (f'# {outname}\n\nSources ({successful}):\n{provenance}\n\n'
+                      f'Behavior: `{behavior}`; unique rules: {len(lines)}.\n\n'
+                      f'Unsupported entries skipped: {len(ignored)}.\n\n'
+                      f'## Raw\n\n```text\n{rawurl}\n```\n\n'
+                      f'## CDN\n\n```text\n{cdn}\n```\n\n'
+                      f'## Mihomo\n\n```yaml\n{outname}:\n    type: http\n'
+                      f'    behavior: {behavior}\n    format: mrs\n    interval: 86400\n'
+                      f'    url: {rawurl}\n```\n')
+            (folder / 'README.md').write_text(readme, encoding='utf-8')
             outputs.append((relative, hashlib.sha256(binary.read_bytes()).hexdigest()))
-            print(f'{relative}: {len(lines)} rules', flush=True)
+            print(f'{relative}: {len(lines)} unique rules from {successful} sources', flush=True)
     # Preserve previously published files when a configured source temporarily returns 404.
     manifest = DEST / '.mrs-managed.json'
     previous = []
@@ -125,7 +230,7 @@ def main():
         previous = json.loads(manifest.read_text(encoding='utf-8')).get('managed_rules', [])
         if not isinstance(previous, list) or any(not isinstance(x, str) or len(x.split('/')) != 2 or not all(NAME.fullmatch(p) for p in x.split('/')) for x in previous):
             raise ValueError('Unsafe upstream manifest')
-    preserved = [old for old in previous if tuple(old.split('/')[0:1] + [old.split('/')[1].removesuffix('-IP')]) in missing_sources]
+    preserved = [old for old in previous if (old.split('/')[0], old.split('/')[1].removesuffix('-IP')) in missing_sources]
     for old in preserved:
         folder = DEST / old
         for binary in folder.glob('*.mrs'):
