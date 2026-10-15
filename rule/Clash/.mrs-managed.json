@@ -1,5 +1,6 @@
 {
   "managed_rules": [
+    "GlobalAI",
     "Telegram",
     "Telegram-IP"
   ]
