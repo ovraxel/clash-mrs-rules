@@ -1,6 +1,7 @@
 {
   "managed_rules": [
     "Dola",
+    "Feishu",
     "GlobalAI",
     "Telegram",
     "Telegram-IP"
