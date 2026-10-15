@@ -1,27 +1,5 @@
 {
   "managed_rules": [
-    "apple",
-    "apple-ip",
-    "cloudflare",
-    "cloudflare-ip",
-    "github",
-    "google",
-    "ins",
-    "okx",
-    "openai",
-    "pikpak",
-    "protonmail",
-    "reddit",
-    "spotify",
-    "spotify-ip",
-    "telegram",
-    "telegram-ip",
-    "tiktok",
-    "vk",
-    "whatsapp",
-    "whatsapp-ip",
-    "x",
-    "youtube",
-    "youtube-ip"
+    "Telegram"
   ]
 }
