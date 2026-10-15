@@ -5,11 +5,4 @@
   "format": "text",
   "min_rules": 1,
   "file": "sources/custom/TikTok-domain.txt"
-},
-{
-  "name": "TikTok-Custom-IP",
-  "behavior": "ipcidr",
-  "format": "text",
-  "min_rules": 1,
-  "file": "sources/custom/TikTok-ip.txt"
 }
