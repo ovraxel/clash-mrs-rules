@@ -1,29 +1,56 @@
+# GlobalAI - manually maintained Mihomo domain rules
+# Format: Mihomo domain text for MRS conversion
+# Note: byteoversea.com may match ByteDance services beyond Dola.
 
-# GlobalAI
-# Claude / ChatGPT / OpenAI / Grok / Dola / Gemini
-
-# Claude / Anthropic
-+.claude.ai
-+.anthropic.com
-+.claude.com
-
-# ChatGPT / OpenAI
-+.chatgpt.com
+# OpenAI / ChatGPT
 +.openai.com
++.chatgpt.com
++.chat.com
 +.oaistatic.com
 +.oaiusercontent.com
 +.oaistatsig.com
 +.openaimerge.com
 
-# Grok / xAI
-+.grok.com
+# Anthropic / Claude
++.anthropic.com
++.claude.ai
++.claude.com
++.clau.de
++.claudeusercontent.com
+
+# xAI / Grok
 +.x.ai
++.grok.com
++.xai.ai
++.xai.com
 
-# Dola
+# Dola AI
 +.dola.com
++.cici.com
++.ciciai.com
++.byteoversea.com
 
-# Gemini / Google AI
-full:gemini.google.com
+# Google Gemini / AI
++.gemini.google.com
++.gemini.gstatic.com
++.deepmind.google
++.deepmind.com
 full:aistudio.google.com
 full:generativelanguage.googleapis.com
 full:ai.google.dev
+
+# Perplexity AI
++.perplexity.ai
++.perplexity.com
+
+# Kimi / Moonshot AI
++.kimi.com
++.kimi.ai
++.kimi.moonshot.cn
++.moonshot.cn
+
+# DeepSeek
++.deepseek.com
++.deepseek.ai
++.chat.deepseek.com
++.platform.deepseek.com
