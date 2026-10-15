@@ -113,8 +113,12 @@ def parse_geosite(content, url, visited, depth=0):
             continue
         if line.startswith('include:'):
             target = line[8:].strip()
+            # Geosite supports attribute-filtered includes, e.g. include:bytedance-ai-!cn.
+            # Filtering requires retaining per-entry attributes; never silently include
+            # the entire child category, as that changes the meaning of the rule.
             if not re.fullmatch(r'[A-Za-z0-9_.-]+', target):
-                raise ValueError(f'Invalid Geosite include: {target}')
+                ignored.append(f'{n}: unsupported attribute-filtered include: {line}')
+                continue
             child = url.rsplit('/', 1)[0] + '/' + target
             if child in visited:
                 continue
