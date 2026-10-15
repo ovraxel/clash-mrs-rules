@@ -1,0 +1,53 @@
+name: Build Upstream MRS
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'config/upstream.json'
+      - 'scripts/update_upstream.py'
+      - '.github/workflows/update-upstream.yml'
+  schedule:
+    - cron: '30 3 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: mrs-publish
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Mihomo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          url=$(gh api repos/MetaCubeX/mihomo/releases/latest --jq '.assets[] | select(.name | test("^mihomo-linux-amd64-compatible-.*\\.gz$")) | .browser_download_url' | head -n 1)
+          test -n "$url"
+          curl -fL --retry 3 "$url" -o /tmp/mihomo.gz
+          gzip -dc /tmp/mihomo.gz | sudo tee /usr/local/bin/mihomo >/dev/null
+          sudo chmod +x /usr/local/bin/mihomo
+          mihomo -v
+      - name: Build upstream
+        env:
+          GITHUB_REF_NAME: main
+        run: python scripts/update_upstream.py
+      - name: Commit upstream outputs
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A rule/Upstream/
+          if git diff --cached --quiet; then echo 'No upstream changes'; exit 0; fi
+          git commit -m 'chore: update upstream MRS'
+          git pull --rebase origin main
+          git push origin HEAD:main
