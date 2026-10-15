@@ -131,6 +131,8 @@ def parse_geosite(content, url, visited, depth=0):
             ignored.extend(extra_ignored)
         elif line.startswith('regexp:'):
             ignored.append(f'{n}: unsupported regexp: {line}')
+        elif line.startswith('domain:'):
+            result.add('+.' + domain(line[7:]))
         elif line.startswith('full:'):
             result.add('full:' + domain(line[5:]))
         elif line.startswith('keyword:'):
