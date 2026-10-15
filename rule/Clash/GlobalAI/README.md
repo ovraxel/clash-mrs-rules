@@ -1,6 +1,6 @@
 # GlobalAI MRS
 
-由本倉庫 TXT 規則自動轉換；Behavior：`domain`；去重後規則數：**16**。
+由本倉庫 TXT 規則自動轉換；Behavior：`domain`；去重後規則數：**37**。
 
 ## GitHub Raw（可用程式碼區塊右上角複製）
 
