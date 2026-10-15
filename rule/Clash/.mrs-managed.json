@@ -1,5 +1,6 @@
 {
   "managed_rules": [
+    "Telegram",
     "Telegram-IP"
   ]
 }
