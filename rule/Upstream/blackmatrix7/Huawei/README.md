@@ -1,15 +1,16 @@
 # Huawei
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Huawei/Huawei.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Huawei/Huawei.list
 
 Behavior: `domain`; unique rules: 160.
 
-Non-domain/IP rules omitted: 0.
+Unsupported entries skipped: 0.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Huawei/Huawei.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Huawei/Huawei.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Huawei:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Huawei/Huawei.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Huawei/Huawei.mrs
 ```

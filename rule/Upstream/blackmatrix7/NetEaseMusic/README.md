@@ -1,15 +1,16 @@
 # NetEaseMusic
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.list
 
 Behavior: `domain`; unique rules: 10.
 
-Non-domain/IP rules omitted: 0.
+Unsupported entries skipped: 0.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/NetEaseMusic/NetEaseMusic.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/NetEaseMusic/NetEaseMusic.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ NetEaseMusic:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/NetEaseMusic/NetEaseMusic.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/NetEaseMusic/NetEaseMusic.mrs
 ```

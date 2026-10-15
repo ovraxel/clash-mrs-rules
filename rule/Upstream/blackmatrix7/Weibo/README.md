@@ -1,15 +1,16 @@
 # Weibo
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Weibo/Weibo.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Weibo/Weibo.list
 
 Behavior: `domain`; unique rules: 4.
 
-Non-domain/IP rules omitted: 0.
+Unsupported entries skipped: 0.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Weibo:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
 ```

@@ -1,15 +1,16 @@
 # Baidu
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.list
 
 Behavior: `domain`; unique rules: 251.
 
-Non-domain/IP rules omitted: 0.
+Unsupported entries skipped: 0.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Baidu/Baidu.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Baidu/Baidu.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Baidu:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Baidu/Baidu.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Baidu/Baidu.mrs
 ```

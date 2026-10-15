@@ -1,15 +1,16 @@
 # Apple-IP
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.list
 
 Behavior: `ipcidr`; unique rules: 13.
 
-Non-domain/IP rules omitted: 13.
+Unsupported entries skipped: 13.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Apple-IP/Apple-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Apple-IP/Apple-IP.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Apple-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Apple-IP/Apple-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Apple-IP/Apple-IP.mrs
 ```

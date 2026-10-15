@@ -1,15 +1,16 @@
 # ByteDance-IP
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ByteDance/ByteDance.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ByteDance/ByteDance.list
 
 Behavior: `ipcidr`; unique rules: 1.
 
-Non-domain/IP rules omitted: 1.
+Unsupported entries skipped: 1.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/ByteDance-IP/ByteDance-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/ByteDance-IP/ByteDance-IP.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ ByteDance-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/ByteDance-IP/ByteDance-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/ByteDance-IP/ByteDance-IP.mrs
 ```

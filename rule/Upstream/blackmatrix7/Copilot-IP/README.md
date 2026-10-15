@@ -1,15 +1,16 @@
 # Copilot-IP
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list
 
 Behavior: `ipcidr`; unique rules: 2.
 
-Non-domain/IP rules omitted: 2.
+Unsupported entries skipped: 2.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Copilot-IP/Copilot-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Copilot-IP/Copilot-IP.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Copilot-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Copilot-IP/Copilot-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Copilot-IP/Copilot-IP.mrs
 ```

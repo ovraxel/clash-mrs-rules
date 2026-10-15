@@ -1,15 +1,16 @@
 # Twitter-IP
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list)
+Sources (1):
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.list
 
 Behavior: `ipcidr`; unique rules: 6.
 
-Non-domain/IP rules omitted: 0.
+Unsupported entries skipped: 0.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Twitter-IP/Twitter-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Twitter-IP/Twitter-IP.mrs
 ```
 
 ## CDN
@@ -26,5 +27,5 @@ Twitter-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Twitter-IP/Twitter-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Twitter-IP/Twitter-IP.mrs
 ```

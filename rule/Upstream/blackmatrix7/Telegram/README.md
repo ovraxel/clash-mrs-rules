@@ -1,15 +1,19 @@
 # Telegram
 
-Upstream: [blackmatrix7](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list)
+Sources (4):
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.list
+- https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/telegram
+- https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.list
 
-Behavior: `domain`; unique rules: 25.
+Behavior: `domain`; unique rules: 28.
 
-Non-domain/IP rules omitted: 11.
+Unsupported entries skipped: 11.
 
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Telegram/Telegram.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Telegram/Telegram.mrs
 ```
 
 ## CDN
@@ -26,5 +30,5 @@ Telegram:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Telegram/Telegram.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Telegram/Telegram.mrs
 ```
