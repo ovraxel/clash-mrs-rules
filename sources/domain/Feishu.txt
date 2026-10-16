@@ -7,5 +7,6 @@
 +.feishuapp.cn
 +.getfeishu.cn
 +.feishu-3rd-party-services.com
++.larksuite.com
 +.larkoffice.com
 keyword:feishu
