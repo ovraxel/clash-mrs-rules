@@ -1,7 +1,8 @@
 # Copilot-IP
 
-Sources (2):
+Sources (3):
 - https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/microsoft
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list
 
 Behavior: `ipcidr`; unique rules: 2.

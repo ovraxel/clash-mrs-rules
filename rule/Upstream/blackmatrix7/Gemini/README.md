@@ -1,10 +1,11 @@
 # Gemini
 
-Sources (2):
+Sources (3):
 - https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.list
+- https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google-gemini
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list
 
-Behavior: `domain`; unique rules: 53.
+Behavior: `domain`; unique rules: 64.
 
 Unsupported entries skipped: 0.
 

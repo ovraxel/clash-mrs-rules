@@ -73,6 +73,27 @@
     "blackmatrix7/Bybit",
     "blackmatrix7/OKX",
     "blackmatrix7/Binance",
-    "blackmatrix7/Kraken"
+    "blackmatrix7/Kraken",
+    "blackmatrix7/Cloudflare",
+    "blackmatrix7/Cloudflare-IP",
+    "blackmatrix7/LINE",
+    "blackmatrix7/Signal",
+    "blackmatrix7/Zoom",
+    "blackmatrix7/Slack",
+    "blackmatrix7/Gmail",
+    "blackmatrix7/Gmail-IP",
+    "blackmatrix7/Tuta",
+    "blackmatrix7/PayPal",
+    "blackmatrix7/Wise",
+    "blackmatrix7/Stripe",
+    "blackmatrix7/Dropbox",
+    "blackmatrix7/MEGA",
+    "blackmatrix7/MEGA-IP",
+    "blackmatrix7/GoogleDrive",
+    "blackmatrix7/HBOMax",
+    "blackmatrix7/Hulu",
+    "blackmatrix7/LinkedIn",
+    "blackmatrix7/Pinterest",
+    "blackmatrix7/Speedtest"
   ]
 }
