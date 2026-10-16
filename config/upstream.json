@@ -840,6 +840,11 @@
           "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-gemini.list"
         },
         {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google-gemini"
+        },
+        {
           "provider": "blackmatrix7",
           "format": "classical-list",
           "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.list"
@@ -856,6 +861,11 @@
           "provider": "MetaCubeX",
           "format": "mihomo-domain",
           "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/microsoft"
         },
         {
           "provider": "blackmatrix7",
@@ -1245,6 +1255,512 @@
           "provider": "blackmatrix7",
           "format": "classical-list",
           "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Outlook/Outlook.list"
+        }
+      ]
+    },
+    {
+      "name": "Cloudflare",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cloudflare.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/cloudflare"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.list"
+        }
+      ]
+    },
+    {
+      "name": "LINE",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/line.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/line"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LINE/LINE.list"
+        }
+      ]
+    },
+    {
+      "name": "Signal",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/signal.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/signal"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Signal/Signal.list"
+        }
+      ]
+    },
+    {
+      "name": "Snapchat",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/snapchat.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/snapchat"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Snapchat/Snapchat.list"
+        }
+      ]
+    },
+    {
+      "name": "Zoom",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/zoom.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/zoom"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Zoom/Zoom.list"
+        }
+      ]
+    },
+    {
+      "name": "MicrosoftTeams",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft-teams.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/microsoft-teams"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/MicrosoftTeams/MicrosoftTeams.list"
+        }
+      ]
+    },
+    {
+      "name": "Slack",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/slack.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/slack"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Slack/Slack.list"
+        }
+      ]
+    },
+    {
+      "name": "Gmail",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list"
+        }
+      ]
+    },
+    {
+      "name": "Mailfence",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/mailfence.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/mailfence"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Mailfence/Mailfence.list"
+        }
+      ]
+    },
+    {
+      "name": "Tuta",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tutanota.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/tutanota"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Tutanota/Tutanota.list"
+        }
+      ]
+    },
+    {
+      "name": "PayPal",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/paypal"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.list"
+        }
+      ]
+    },
+    {
+      "name": "Wise",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/wise.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/wise"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Wise/Wise.list"
+        }
+      ]
+    },
+    {
+      "name": "Stripe",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/stripe.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/stripe"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Stripe/Stripe.list"
+        }
+      ]
+    },
+    {
+      "name": "Dropbox",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/dropbox.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/dropbox"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Dropbox/Dropbox.list"
+        }
+      ]
+    },
+    {
+      "name": "MEGA",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/mega.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/mega"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/MEGA/MEGA.list"
+        }
+      ]
+    },
+    {
+      "name": "GoogleDrive",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google-drive.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google-drive"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleDrive/GoogleDrive.list"
+        }
+      ]
+    },
+    {
+      "name": "HBOMax",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hbo.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/hbo"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.list"
+        }
+      ]
+    },
+    {
+      "name": "Hulu",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/hulu.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/hulu"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Hulu/Hulu.list"
+        }
+      ]
+    },
+    {
+      "name": "Crunchyroll",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/crunchyroll.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/crunchyroll"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Crunchyroll/Crunchyroll.list"
+        }
+      ]
+    },
+    {
+      "name": "LinkedIn",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/linkedin.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/linkedin"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/LinkedIn/LinkedIn.list"
+        }
+      ]
+    },
+    {
+      "name": "Pinterest",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/pinterest.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/pinterest"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Pinterest/Pinterest.list"
+        }
+      ]
+    },
+    {
+      "name": "Speedtest",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/speedtest.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/speedtest"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.list"
         }
       ]
     }
