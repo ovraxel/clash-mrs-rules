@@ -1224,6 +1224,29 @@
           "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Kraken/Kraken.list"
         }
       ]
+    },
+    {
+      "name": "Outlook",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/outlook.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/outlook"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Outlook/Outlook.list"
+        }
+      ]
     }
   ]
 }
