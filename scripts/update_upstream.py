@@ -217,6 +217,16 @@ def main():
             shadow_folder = SHADOW_STAGE / provider / outname
             shadow_folder.mkdir(parents=True)
             (shadow_folder / f'{outname}.list').write_text(render(lines, behavior), encoding='utf-8')
+            shadow_rel = f'rule/Shadowrocket/Upstream/{provider}/{outname}/{outname}.list'
+            shadow_url = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/{shadow_rel}'
+            (shadow_folder / 'README.md').write_text(
+                f'# {outname} — Shadowrocket\\n\\n'
+                f'Provider: `{provider}`; behavior: `{behavior}`; unique rules: {len(lines)}.\\n\\n'
+                f'## Raw\\n\\n```text\\n{shadow_url}\\n```\\n\\n'
+                f'## Shadowrocket\\n\\n```ini\\nRULE-SET,{shadow_url},PROXY\\n```\\n\\n'
+                'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\\n',
+                encoding='utf-8'
+            )
             source = folder / 'input.txt'
             source.write_text('\n'.join(lines) + '\n', encoding='utf-8')
             binary = folder / (outname + '.mrs')
@@ -292,6 +302,7 @@ def main():
             target = SHADOW_DEST / old
             target.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source_list, target / source_list.name)
+            shutil.copyfile(source_list.parent / 'README.md', target / 'README.md')
     SHADOW_MANIFEST.write_text(json.dumps({'managed_rules': shadow_current}, indent=2) + '\n', encoding='utf-8')
     print(f'Shadowrocket upstream LIST published: {len(shadow_current)}', flush=True)
     print(f'Upstream build completed: {len(outputs)} MRS files; {len(missing_sources)} missing sources skipped', flush=True)
