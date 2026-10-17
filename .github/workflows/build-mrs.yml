@@ -1,15 +1,16 @@
-name: Build and Publish MRS
+name: Build Manual TXT to MRS
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 3 * * *'
   push:
     branches: [main]
     paths:
       - 'sources/domain/**'
       - 'sources/ip/**'
       - 'scripts/build.py'
+      - 'scripts/shadowrocket_rules.py'
       - '.github/workflows/build-mrs.yml'
+  schedule:
+    - cron: '0 3 * * *'
 permissions:
   contents: write
 concurrency:
@@ -18,9 +19,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
@@ -28,34 +31,25 @@ jobs:
       - name: Install Mihomo
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
         run: |
           set -euo pipefail
-          gh api repos/MetaCubeX/mihomo/releases/latest > /tmp/mihomo-release.json
-          ASSET_URL=$(jq -r '[.assets[] | select(.name | test("^mihomo-linux-amd64-compatible-.*\\.gz$"))][0].url // empty' /tmp/mihomo-release.json)
-          test -n "$ASSET_URL"
-          gh api -H 'Accept: application/octet-stream' "$ASSET_URL" > /tmp/mihomo.gz
-          gzip -t /tmp/mihomo.gz
+          url=$(gh api repos/MetaCubeX/mihomo/releases/latest --jq '.assets[] | select(.name | test("^mihomo-linux-amd64-compatible-.*\\.gz$")) | .browser_download_url' | head -n 1)
+          test -n "$url"
+          curl -fL --retry 3 "$url" -o /tmp/mihomo.gz
           gzip -dc /tmp/mihomo.gz | sudo tee /usr/local/bin/mihomo >/dev/null
           sudo chmod +x /usr/local/bin/mihomo
           mihomo -v
-      - name: Build TXT to MRS
+      - name: Build manual TXT
         env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF_NAME: main
         run: python scripts/build.py
-      - name: Publish to main
-        shell: bash
+      - name: Commit manual outputs
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A rule/Clash/
-          if git diff --cached --quiet; then
-            echo 'No changes'
-            exit 0
-          fi
-          git commit -m 'build: update TXT-based MRS rules'
-          git fetch origin main
-          test "$(git rev-parse HEAD^)" = "$(git rev-parse origin/main)" || { echo 'main advanced; rerun workflow'; exit 1; }
+          git add -A rule/Clash/ rule/Shadowrocket/Clash/
+          if git diff --cached --quiet; then echo 'No manual changes'; exit 0; fi
+          git commit -m 'chore: update manual MRS'
+          git pull --rebase origin main
           git push origin HEAD:main
