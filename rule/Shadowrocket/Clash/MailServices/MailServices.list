@@ -1,0 +1,22 @@
+# Shadowrocket RULE-SET; generated automatically.
+DOMAIN,kdrive.infomaniak.com
+DOMAIN,ksuite.infomaniak.com
+DOMAIN-SUFFIX,connect.kdrive.infomaniak.com
+DOMAIN-SUFFIX,etik.com
+DOMAIN-SUFFIX,ik.me
+DOMAIN-SUFFIX,ikmail.com
+DOMAIN-SUFFIX,infomaniak.ch
+DOMAIN-SUFFIX,infomaniak.com
+DOMAIN-SUFFIX,infomaniakusercontent.com
+DOMAIN-SUFFIX,keemail.me
+DOMAIN-SUFFIX,ksharelink.com
+DOMAIN-SUFFIX,mailfence.com
+DOMAIN-SUFFIX,meil.no
+DOMAIN-SUFFIX,mf.me
+DOMAIN-SUFFIX,tuta.com
+DOMAIN-SUFFIX,tuta.io
+DOMAIN-SUFFIX,tutamail.com
+DOMAIN-SUFFIX,tutanota.com
+DOMAIN-SUFFIX,tutanota.de
+DOMAIN-SUFFIX,tutao.de
+DOMAIN-SUFFIX,wayscloud.services
