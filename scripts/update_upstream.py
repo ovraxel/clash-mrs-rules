@@ -220,11 +220,11 @@ def main():
             shadow_rel = f'rule/Shadowrocket/Upstream/{provider}/{outname}/{outname}.list'
             shadow_url = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/{shadow_rel}'
             (shadow_folder / 'README.md').write_text(
-                f'# {outname} — Shadowrocket\\n\\n'
-                f'Provider: `{provider}`; behavior: `{behavior}`; unique rules: {len(lines)}.\\n\\n'
-                f'## Raw\\n\\n```text\\n{shadow_url}\\n```\\n\\n'
-                f'## Shadowrocket\\n\\n```ini\\nRULE-SET,{shadow_url},PROXY\\n```\\n\\n'
-                'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\\n',
+                f'# {outname} — Shadowrocket\n\n'
+                f'Provider: `{provider}`; behavior: `{behavior}`; unique rules: {len(lines)}.\n\n'
+                f'## Raw\n\n```text\n{shadow_url}\n```\n\n'
+                f'## Shadowrocket\n\n```ini\nRULE-SET,{shadow_url},PROXY\n```\n\n'
+                'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\n',
                 encoding='utf-8'
             )
             source = folder / 'input.txt'
