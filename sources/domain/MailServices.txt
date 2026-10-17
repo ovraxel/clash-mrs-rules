@@ -1,0 +1,31 @@
+# Infomaniak
++.infomaniak.com
++.infomaniak.ch
++.ik.me
++.ikmail.com
++.etik.com
++.infomaniakusercontent.com
++.ksharelink.com
+
+# Mailfence
++.mailfence.com
++.mf.me
+
+# Meil
++.meil.no
++.wayscloud.services
+
+# Tuta
++.tuta.com
++.tuta.io
++.tutamail.com
++.tutanota.com
++.tutanota.de
++.tutao.de
++.keemail.me
+# Infomaniak kDrive
+full:kdrive.infomaniak.com
+full:ksuite.infomaniak.com
++.connect.kdrive.infomaniak.com
++.infomaniakusercontent.com
++.ksharelink.com
