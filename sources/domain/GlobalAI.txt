@@ -10,6 +10,8 @@
 +.oaiusercontent.com
 +.oaistatsig.com
 +.openaimerge.com
+keyword:openai
+keyword:chatgpt
 
 # Anthropic / Claude
 +.anthropic.com
@@ -17,18 +19,23 @@
 +.claude.com
 +.clau.de
 +.claudeusercontent.com
+keyword:anthropic
+keyword:claude
 
 # xAI / Grok
 +.x.ai
 +.grok.com
 +.xai.ai
 +.xai.com
+keyword:grok
 
 # Dola AI
 +.dola.com
 +.cici.com
 +.ciciai.com
 +.byteoversea.com
+keyword:dola
+keyword:ciciai
 
 # Google Gemini / AI
 +.gemini.google.com
