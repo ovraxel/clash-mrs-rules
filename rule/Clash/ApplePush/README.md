@@ -1,0 +1,32 @@
+# ApplePush MRS
+
+由本倉庫 TXT 規則自動轉換；Behavior：`domain`；去重後規則數：**3**。
+
+## GitHub Raw（可用程式碼區塊右上角複製）
+
+```text
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
+```
+
+[開啟／下載 MRS](https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs)
+
+## jsDelivr CDN
+
+```text
+https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/ApplePush/ApplePush.mrs
+```
+
+## Mihomo 配置
+
+```yaml
+ApplePush:
+    type: http
+    behavior: domain
+    format: mrs
+    interval: 86400
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
+```
+
+## TXT 來源
+
+[sources/domain/ApplePush.txt](https://github.com/wiedergeburtme/clash-mrs-rules/blob/main/sources/domain/ApplePush.txt)
