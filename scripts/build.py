@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess
 from pathlib import Path
+from shadowrocket_rules import render
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCES = ROOT / 'sources'
@@ -16,6 +17,9 @@ STAGE = ROOT / '.build' / 'publish'
 REPO = os.environ.get('GITHUB_REPOSITORY', 'wiedergeburtme/clash-mrs-rules')
 BRANCH = os.environ.get('GITHUB_REF_NAME', 'main')
 MANIFEST = DEST / '.mrs-managed.json'
+SHADOW_DEST = ROOT / 'rule' / 'Shadowrocket' / 'Clash'
+SHADOW_STAGE = ROOT / '.build' / 'shadowrocket'
+SHADOW_MANIFEST = SHADOW_DEST / '.list-managed.json'
 NAME_RE = re.compile(r'[A-Za-z0-9][A-Za-z0-9_-]*\Z')
 LABEL_RE = re.compile(r'[a-z0-9_](?:[a-z0-9_-]{0,61}[a-z0-9_])?\Z', re.I)
 
@@ -84,6 +88,7 @@ def main():
     if STAGE.parent.exists():
         shutil.rmtree(STAGE.parent)
     STAGE.mkdir(parents=True)
+    SHADOW_STAGE.mkdir(parents=True)
     entries = []
     names = set()
     for folder, behavior in ((SOURCES / 'domain', 'domain'), (SOURCES / 'ip', 'ipcidr')):
@@ -102,6 +107,9 @@ def main():
     checksums = []
     for source, name, behavior in entries:
         lines, original = read_lines(source, behavior)
+        shadow_folder = SHADOW_STAGE / name
+        shadow_folder.mkdir(parents=True)
+        (shadow_folder / f'{name}.list').write_text(render(lines, behavior), encoding='utf-8')
         folder = STAGE / name
         folder.mkdir()
         input_txt = STAGE.parent / f'{name}.txt'
@@ -140,6 +148,22 @@ def main():
             shutil.copyfile(STAGE / name / filename, target / filename)
     shutil.copyfile(STAGE / 'SHA256SUMS', DEST / 'SHA256SUMS')
     MANIFEST.write_text(json.dumps({'managed_rules': current}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    SHADOW_DEST.mkdir(parents=True, exist_ok=True)
+    shadow_previous = []
+    if SHADOW_MANIFEST.exists():
+        data = json.loads(SHADOW_MANIFEST.read_text(encoding='utf-8'))
+        shadow_previous = data.get('managed_rules', [])
+        if not isinstance(shadow_previous, list) or any(not isinstance(n, str) or not NAME_RE.fullmatch(n) for n in shadow_previous):
+            raise ValueError('Unsafe Shadowrocket manifest')
+    for name in shadow_previous:
+        if name not in current and (SHADOW_DEST / name).is_dir():
+            shutil.rmtree(SHADOW_DEST / name)
+    for name in current:
+        target = SHADOW_DEST / name
+        target.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(SHADOW_STAGE / name / f'{name}.list', target / f'{name}.list')
+    SHADOW_MANIFEST.write_text(json.dumps({'managed_rules': current}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+    print(f'Successfully published {len(current)} Shadowrocket LIST files.', flush=True)
     print(f'Successfully published {len(current)} MRS files.', flush=True)
 
 
