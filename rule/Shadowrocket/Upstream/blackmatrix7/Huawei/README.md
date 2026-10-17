@@ -1,1 +1,17 @@
-# Huawei — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 402.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Huawei/Huawei.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Huawei/Huawei.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# Huawei — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 402.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Huawei/Huawei.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Huawei/Huawei.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

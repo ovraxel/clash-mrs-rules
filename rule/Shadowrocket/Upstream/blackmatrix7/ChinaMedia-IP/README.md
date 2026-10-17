@@ -1,1 +1,17 @@
-# ChinaMedia-IP — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 84.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/ChinaMedia-IP/ChinaMedia-IP.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/ChinaMedia-IP/ChinaMedia-IP.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# ChinaMedia-IP — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 84.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/ChinaMedia-IP/ChinaMedia-IP.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/ChinaMedia-IP/ChinaMedia-IP.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

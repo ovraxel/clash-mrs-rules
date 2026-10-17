@@ -1,1 +1,17 @@
-# AmazonPrimeVideo — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 36.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/AmazonPrimeVideo/AmazonPrimeVideo.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/AmazonPrimeVideo/AmazonPrimeVideo.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# AmazonPrimeVideo — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 36.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/AmazonPrimeVideo/AmazonPrimeVideo.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/AmazonPrimeVideo/AmazonPrimeVideo.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

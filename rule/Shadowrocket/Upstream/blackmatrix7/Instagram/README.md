@@ -1,1 +1,17 @@
-# Instagram — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 76.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Instagram/Instagram.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Instagram/Instagram.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# Instagram — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 76.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Instagram/Instagram.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Instagram/Instagram.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

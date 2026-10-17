@@ -1,1 +1,17 @@
-# Signal — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 8.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Signal/Signal.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Signal/Signal.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# Signal — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 8.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Signal/Signal.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Signal/Signal.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

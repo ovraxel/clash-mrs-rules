@@ -1,1 +1,17 @@
-# CCTV — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 44.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/CCTV/CCTV.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/CCTV/CCTV.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# CCTV — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 44.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/CCTV/CCTV.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/CCTV/CCTV.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

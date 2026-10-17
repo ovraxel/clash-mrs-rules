@@ -1,1 +1,17 @@
-# LINE — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 20.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/LINE/LINE.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/LINE/LINE.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# LINE — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 20.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/LINE/LINE.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/LINE/LINE.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

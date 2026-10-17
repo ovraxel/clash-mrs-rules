@@ -1,1 +1,17 @@
-# XiaoMi — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `domain`; unique rules: 178.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/XiaoMi/XiaoMi.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/XiaoMi/XiaoMi.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# XiaoMi — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 178.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/XiaoMi/XiaoMi.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/XiaoMi/XiaoMi.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

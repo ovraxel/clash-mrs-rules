@@ -1,1 +1,17 @@
-# Gmail-IP — Shadowrocket\n\nProvider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 5.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Gmail-IP/Gmail-IP.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Gmail-IP/Gmail-IP.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# Gmail-IP — Shadowrocket
+
+Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 5.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Gmail-IP/Gmail-IP.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Upstream/blackmatrix7/Gmail-IP/Gmail-IP.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).
