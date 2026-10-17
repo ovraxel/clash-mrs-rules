@@ -1,1 +1,17 @@
-# GlobalAI — Shadowrocket\n\nBehavior: `domain`; unique rules: 44.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/GlobalAI/GlobalAI.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/GlobalAI/GlobalAI.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# GlobalAI — Shadowrocket
+
+Behavior: `domain`; unique rules: 44.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/GlobalAI/GlobalAI.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/GlobalAI/GlobalAI.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

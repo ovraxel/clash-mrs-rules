@@ -1,1 +1,17 @@
-# Feishu — Shadowrocket\n\nBehavior: `domain`; unique rules: 11.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/Feishu/Feishu.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/Feishu/Feishu.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# Feishu — Shadowrocket
+
+Behavior: `domain`; unique rules: 11.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/Feishu/Feishu.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/Feishu/Feishu.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).

@@ -1,1 +1,17 @@
-# MailServices — Shadowrocket\n\nBehavior: `domain`; unique rules: 21.\n\n## Raw\n\n```text\nhttps://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/MailServices/MailServices.list\n```\n\n## Shadowrocket\n\n```ini\nRULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/MailServices/MailServices.list,PROXY\n```\n\nReplace `PROXY` with your actual policy group (or DIRECT/REJECT).\n
+# MailServices — Shadowrocket
+
+Behavior: `domain`; unique rules: 21.
+
+## Raw
+
+```text
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/MailServices/MailServices.list
+```
+
+## Shadowrocket
+
+```ini
+RULE-SET,https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Shadowrocket/Clash/MailServices/MailServices.list,PROXY
+```
+
+Replace `PROXY` with your actual policy group (or DIRECT/REJECT).
