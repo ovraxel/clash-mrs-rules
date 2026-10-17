@@ -5,15 +5,15 @@
 ## GitHub Raw（可用程式碼區塊右上角複製）
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs
 ```
 
-[開啟／下載 MRS](https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs)
+[開啟／下載 MRS](https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs)
 
 ## jsDelivr CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/GlobalAI/GlobalAI.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Clash/GlobalAI/GlobalAI.mrs
 ```
 
 ## Mihomo 配置
@@ -24,9 +24,9 @@ GlobalAI:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/GlobalAI/GlobalAI.mrs
 ```
 
 ## TXT 來源
 
-[sources/domain/GlobalAI.txt](https://github.com/wiedergeburtme/clash-mrs-rules/blob/main/sources/domain/GlobalAI.txt)
+[sources/domain/GlobalAI.txt](https://github.com/ovraxel/clash-mrs-rules/blob/main/sources/domain/GlobalAI.txt)

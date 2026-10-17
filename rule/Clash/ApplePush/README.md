@@ -5,15 +5,15 @@
 ## GitHub Raw（可用程式碼區塊右上角複製）
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
 ```
 
-[開啟／下載 MRS](https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs)
+[開啟／下載 MRS](https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs)
 
 ## jsDelivr CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Clash/ApplePush/ApplePush.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Clash/ApplePush/ApplePush.mrs
 ```
 
 ## Mihomo 配置
@@ -24,9 +24,9 @@ ApplePush:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Clash/ApplePush/ApplePush.mrs
 ```
 
 ## TXT 來源
 
-[sources/domain/ApplePush.txt](https://github.com/wiedergeburtme/clash-mrs-rules/blob/main/sources/domain/ApplePush.txt)
+[sources/domain/ApplePush.txt](https://github.com/ovraxel/clash-mrs-rules/blob/main/sources/domain/ApplePush.txt)
