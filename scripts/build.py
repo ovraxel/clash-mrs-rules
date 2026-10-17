@@ -113,11 +113,11 @@ def main():
         shadow_rel = f'rule/Shadowrocket/Clash/{name}/{name}.list'
         shadow_url = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/{shadow_rel}'
         (shadow_folder / 'README.md').write_text(
-            f'# {name} — Shadowrocket\\n\\n'
-            f'Behavior: `{behavior}`; unique rules: {len(lines)}.\\n\\n'
-            f'## Raw\\n\\n```text\\n{shadow_url}\\n```\\n\\n'
-            f'## Shadowrocket\\n\\n```ini\\nRULE-SET,{shadow_url},PROXY\\n```\\n\\n'
-            'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\\n',
+            f'# {name} — Shadowrocket\n\n'
+            f'Behavior: `{behavior}`; unique rules: {len(lines)}.\n\n'
+            f'## Raw\n\n```text\n{shadow_url}\n```\n\n'
+            f'## Shadowrocket\n\n```ini\nRULE-SET,{shadow_url},PROXY\n```\n\n'
+            'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\n',
             encoding='utf-8'
         )
         folder = STAGE / name
