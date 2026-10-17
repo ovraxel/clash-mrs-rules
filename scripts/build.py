@@ -110,6 +110,16 @@ def main():
         shadow_folder = SHADOW_STAGE / name
         shadow_folder.mkdir(parents=True)
         (shadow_folder / f'{name}.list').write_text(render(lines, behavior), encoding='utf-8')
+        shadow_rel = f'rule/Shadowrocket/Clash/{name}/{name}.list'
+        shadow_url = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/{shadow_rel}'
+        (shadow_folder / 'README.md').write_text(
+            f'# {name} — Shadowrocket\\n\\n'
+            f'Behavior: `{behavior}`; unique rules: {len(lines)}.\\n\\n'
+            f'## Raw\\n\\n```text\\n{shadow_url}\\n```\\n\\n'
+            f'## Shadowrocket\\n\\n```ini\\nRULE-SET,{shadow_url},PROXY\\n```\\n\\n'
+            'Replace `PROXY` with your actual policy group (or DIRECT/REJECT).\\n',
+            encoding='utf-8'
+        )
         folder = STAGE / name
         folder.mkdir()
         input_txt = STAGE.parent / f'{name}.txt'
@@ -161,7 +171,8 @@ def main():
     for name in current:
         target = SHADOW_DEST / name
         target.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(SHADOW_STAGE / name / f'{name}.list', target / f'{name}.list')
+        for filename in (f'{name}.list', 'README.md'):
+            shutil.copyfile(SHADOW_STAGE / name / filename, target / filename)
     SHADOW_MANIFEST.write_text(json.dumps({'managed_rules': current}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print(f'Successfully published {len(current)} Shadowrocket LIST files.', flush=True)
     print(f'Successfully published {len(current)} MRS files.', flush=True)
