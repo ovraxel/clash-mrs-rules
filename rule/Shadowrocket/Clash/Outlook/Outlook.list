@@ -1,0 +1,21 @@
+# Shadowrocket RULE-SET; generated automatically.
+DOMAIN-KEYWORD,hotmail
+DOMAIN-KEYWORD,outlook
+DOMAIN-SUFFIX,hotmail.co.uk
+DOMAIN-SUFFIX,hotmail.com
+DOMAIN-SUFFIX,live.com
+DOMAIN-SUFFIX,live.net
+DOMAIN-SUFFIX,microsoftonline-p.com
+DOMAIN-SUFFIX,microsoftonline.com
+DOMAIN-SUFFIX,msauth.net
+DOMAIN-SUFFIX,msecnd.net
+DOMAIN-SUFFIX,msftauth.net
+DOMAIN-SUFFIX,msftauthimages.net
+DOMAIN-SUFFIX,msidentity.com
+DOMAIN-SUFFIX,msn.com
+DOMAIN-SUFFIX,office365.com
+DOMAIN-SUFFIX,outlook.cn
+DOMAIN-SUFFIX,outlook.com
+DOMAIN-SUFFIX,outlook.office.com
+DOMAIN-SUFFIX,outlook.office365.com
+DOMAIN-SUFFIX,outlookmobile.com

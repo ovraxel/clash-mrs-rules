@@ -1,0 +1,11 @@
+{
+  "managed_rules": [
+    "ApplePush",
+    "Dola",
+    "Feishu",
+    "GlobalAI",
+    "Outlook",
+    "ApplePush-IP",
+    "Telegram-IP"
+  ]
+}

@@ -1,0 +1,4 @@
+# Shadowrocket RULE-SET; generated automatically.
+DOMAIN-KEYWORD,apple.com.edgekey.net
+DOMAIN-SUFFIX,push-apple.com.akadns.net
+DOMAIN-SUFFIX,push.apple.com

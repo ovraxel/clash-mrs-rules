@@ -1,0 +1,12 @@
+# Shadowrocket RULE-SET; generated automatically.
+DOMAIN-KEYWORD,feishu
+DOMAIN-SUFFIX,feishu-3rd-party-services.com
+DOMAIN-SUFFIX,feishu.cn
+DOMAIN-SUFFIX,feishu.net
+DOMAIN-SUFFIX,feishuapp.cn
+DOMAIN-SUFFIX,feishucdn.com
+DOMAIN-SUFFIX,feishuimg.com
+DOMAIN-SUFFIX,feishupkg.com
+DOMAIN-SUFFIX,getfeishu.cn
+DOMAIN-SUFFIX,larkoffice.com
+DOMAIN-SUFFIX,larksuite.com
