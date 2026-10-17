@@ -11,7 +11,7 @@ Unsupported entries skipped: 0.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/China-IP/China-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/China-IP/China-IP.mrs
 ```
 
 ## CDN
@@ -28,5 +28,5 @@ China-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/China-IP/China-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/China-IP/China-IP.mrs
 ```

@@ -13,7 +13,7 @@ Unsupported entries skipped: 5.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Netflix-IP/Netflix-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Netflix-IP/Netflix-IP.mrs
 ```
 
 ## CDN
@@ -30,5 +30,5 @@ Netflix-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Netflix-IP/Netflix-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Netflix-IP/Netflix-IP.mrs
 ```

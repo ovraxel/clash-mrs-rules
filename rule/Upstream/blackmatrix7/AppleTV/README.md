@@ -10,7 +10,7 @@ Unsupported entries skipped: 1.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/AppleTV/AppleTV.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/AppleTV/AppleTV.mrs
 ```
 
 ## CDN
@@ -27,5 +27,5 @@ AppleTV:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/AppleTV/AppleTV.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/AppleTV/AppleTV.mrs
 ```

@@ -10,7 +10,7 @@ Unsupported entries skipped: 0.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/NetEaseMusic-IP/NetEaseMusic-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/NetEaseMusic-IP/NetEaseMusic-IP.mrs
 ```
 
 ## CDN
@@ -27,5 +27,5 @@ NetEaseMusic-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/NetEaseMusic-IP/NetEaseMusic-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/NetEaseMusic-IP/NetEaseMusic-IP.mrs
 ```

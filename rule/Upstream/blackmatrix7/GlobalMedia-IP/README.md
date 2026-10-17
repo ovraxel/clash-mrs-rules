@@ -10,7 +10,7 @@ Unsupported entries skipped: 3.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
 ```
 
 ## CDN
@@ -27,5 +27,5 @@ GlobalMedia-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
 ```

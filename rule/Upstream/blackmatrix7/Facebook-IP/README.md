@@ -13,7 +13,7 @@ Unsupported entries skipped: 1.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Facebook-IP/Facebook-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Facebook-IP/Facebook-IP.mrs
 ```
 
 ## CDN
@@ -30,5 +30,5 @@ Facebook-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/Facebook-IP/Facebook-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Facebook-IP/Facebook-IP.mrs
 ```

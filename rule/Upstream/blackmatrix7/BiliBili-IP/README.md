@@ -12,7 +12,7 @@ Unsupported entries skipped: 6.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/BiliBili-IP/BiliBili-IP.mrs
+https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/BiliBili-IP/BiliBili-IP.mrs
 ```
 
 ## CDN
@@ -29,5 +29,5 @@ BiliBili-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/refs/heads/main/rule/Upstream/blackmatrix7/BiliBili-IP/BiliBili-IP.mrs
+    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/BiliBili-IP/BiliBili-IP.mrs
 ```
