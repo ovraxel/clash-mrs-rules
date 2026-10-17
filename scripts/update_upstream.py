@@ -10,11 +10,15 @@ import subprocess
 import urllib.request
 import urllib.error
 from pathlib import Path
+from shadowrocket_rules import render
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / 'config/upstream.json'
 DEST = ROOT / 'rule/Upstream'
 STAGE = ROOT / '.build-upstream'
+SHADOW_DEST = ROOT / 'rule' / 'Shadowrocket' / 'Upstream'
+SHADOW_STAGE = ROOT / '.build-upstream-shadowrocket'
+SHADOW_MANIFEST = SHADOW_DEST / '.list-managed.json'
 REPO = os.environ.get('GITHUB_REPOSITORY', 'wiedergeburtme/clash-mrs-rules')
 BRANCH = os.environ.get('GITHUB_REF_NAME', 'main')
 NAME = re.compile(r'[A-Za-z0-9][A-Za-z0-9_-]*\Z')
@@ -154,6 +158,9 @@ def main():
     if STAGE.exists():
         shutil.rmtree(STAGE)
     STAGE.mkdir(parents=True)
+    if SHADOW_STAGE.exists():
+        shutil.rmtree(SHADOW_STAGE)
+    SHADOW_STAGE.mkdir(parents=True)
     outputs, used, missing_sources = [], set(), set()
     for rule in rules:
         provider, name = rule['provider'], rule['name']
@@ -207,6 +214,9 @@ def main():
             outname = name + suffix
             folder = STAGE / provider / outname
             folder.mkdir(parents=True)
+            shadow_folder = SHADOW_STAGE / provider / outname
+            shadow_folder.mkdir(parents=True)
+            (shadow_folder / f'{outname}.list').write_text(render(lines, behavior), encoding='utf-8')
             source = folder / 'input.txt'
             source.write_text('\n'.join(lines) + '\n', encoding='utf-8')
             binary = folder / (outname + '.mrs')
@@ -260,6 +270,30 @@ def main():
                 shutil.copyfile(src, target / src.name)
     shutil.copyfile(STAGE / 'SHA256SUMS', DEST / 'SHA256SUMS')
     manifest.write_text(json.dumps({'managed_rules': current}, indent=2) + '\n', encoding='utf-8')
+    # Keep previously published LIST when an upstream temporarily returns 404.
+    SHADOW_DEST.mkdir(parents=True, exist_ok=True)
+    shadow_previous = []
+    if SHADOW_MANIFEST.exists():
+        shadow_previous = json.loads(SHADOW_MANIFEST.read_text(encoding='utf-8')).get('managed_rules', [])
+        if not isinstance(shadow_previous, list) or any(not isinstance(x, str) or len(x.split('/')) != 2 or not all(NAME.fullmatch(p) for p in x.split('/')) for x in shadow_previous):
+            raise ValueError('Unsafe Shadowrocket upstream manifest')
+    shadow_current = []
+    for old in current:
+        if (SHADOW_STAGE / old / (Path(old).name + '.list')).exists():
+            shadow_current.append(old)
+        elif old in shadow_previous and (SHADOW_DEST / old / (Path(old).name + '.list')).exists():
+            shadow_current.append(old)
+    for old in shadow_previous:
+        if old not in shadow_current and (SHADOW_DEST / old).is_dir():
+            shutil.rmtree(SHADOW_DEST / old)
+    for old in shadow_current:
+        source_list = SHADOW_STAGE / old / (Path(old).name + '.list')
+        if source_list.exists():
+            target = SHADOW_DEST / old
+            target.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source_list, target / source_list.name)
+    SHADOW_MANIFEST.write_text(json.dumps({'managed_rules': shadow_current}, indent=2) + '\n', encoding='utf-8')
+    print(f'Shadowrocket upstream LIST published: {len(shadow_current)}', flush=True)
     print(f'Upstream build completed: {len(outputs)} MRS files; {len(missing_sources)} missing sources skipped', flush=True)
 
 if __name__ == '__main__':
