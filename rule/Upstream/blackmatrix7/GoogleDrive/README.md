@@ -10,13 +10,13 @@ Unsupported entries skipped: 1.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
 ```
 
 ## CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
 ```
 
 ## Mihomo
@@ -27,5 +27,5 @@ GoogleDrive:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GoogleDrive/GoogleDrive.mrs
 ```

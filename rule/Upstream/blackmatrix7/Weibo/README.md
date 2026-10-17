@@ -10,13 +10,13 @@ Unsupported entries skipped: 0.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
 ```
 
 ## CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
 ```
 
 ## Mihomo
@@ -27,5 +27,5 @@ Weibo:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/Weibo/Weibo.mrs
 ```

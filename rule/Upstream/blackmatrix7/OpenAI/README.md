@@ -12,13 +12,13 @@ Unsupported entries skipped: 2.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
 ```
 
 ## CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
 ```
 
 ## Mihomo
@@ -29,5 +29,5 @@ OpenAI:
     behavior: domain
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/OpenAI/OpenAI.mrs
 ```

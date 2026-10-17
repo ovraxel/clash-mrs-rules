@@ -10,13 +10,13 @@ Unsupported entries skipped: 0.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
 ```
 
 ## CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
 ```
 
 ## Mihomo
@@ -27,5 +27,5 @@ TencentVideo-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/TencentVideo-IP/TencentVideo-IP.mrs
 ```

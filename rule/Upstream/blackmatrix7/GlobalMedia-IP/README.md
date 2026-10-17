@@ -10,13 +10,13 @@ Unsupported entries skipped: 3.
 ## Raw
 
 ```text
-https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
+https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
 ```
 
 ## CDN
 
 ```text
-https://cdn.jsdelivr.net/gh/wiedergeburtme/clash-mrs-rules@main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
+https://cdn.jsdelivr.net/gh/ovraxel/clash-mrs-rules@main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
 ```
 
 ## Mihomo
@@ -27,5 +27,5 @@ GlobalMedia-IP:
     behavior: ipcidr
     format: mrs
     interval: 86400
-    url: https://raw.githubusercontent.com/wiedergeburtme/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
+    url: https://raw.githubusercontent.com/ovraxel/clash-mrs-rules/main/rule/Upstream/blackmatrix7/GlobalMedia-IP/GlobalMedia-IP.mrs
 ```
