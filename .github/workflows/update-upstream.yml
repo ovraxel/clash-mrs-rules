@@ -6,6 +6,7 @@ on:
     paths:
       - 'config/upstream.json'
       - 'scripts/update_upstream.py'
+      - 'scripts/shadowrocket_rules.py'
       - '.github/workflows/update-upstream.yml'
   schedule:
     - cron: '30 3 * * *'
@@ -46,7 +47,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A rule/Upstream/
+          git add -A rule/Upstream/ rule/Shadowrocket/Upstream/
           if git diff --cached --quiet; then echo 'No upstream changes'; exit 0; fi
           git commit -m 'chore: update upstream MRS'
           git pull --rebase origin main
