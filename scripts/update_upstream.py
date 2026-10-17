@@ -215,7 +215,7 @@ def main():
                 raise RuntimeError(f'{outname}: missing MRS')
             source.unlink()
             relative = f'{provider}/{outname}/{outname}.mrs'
-            rawurl = f'https://raw.githubusercontent.com/{REPO}/refs/heads/{BRANCH}/rule/Upstream/{relative}'
+            rawurl = f'https://raw.githubusercontent.com/{REPO}/{BRANCH}/rule/Upstream/{relative}'
             cdn = f'https://cdn.jsdelivr.net/gh/{REPO}@{BRANCH}/rule/Upstream/{relative}'
             provenance = '\n'.join(f'- {u}' for u in source_details)
             readme = (f'# {outname}\n\nSources ({successful}):\n{provenance}\n\n'
