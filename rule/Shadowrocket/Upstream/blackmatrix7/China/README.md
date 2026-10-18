@@ -1,6 +1,6 @@
 # China — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 110748.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 110660.
 
 ## Raw
 
