@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/microsoft
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.list
 
-Behavior: `domain`; unique rules: 916.
+Behavior: `domain`; unique rules: 912.
 
 Unsupported entries skipped: 2.
 
