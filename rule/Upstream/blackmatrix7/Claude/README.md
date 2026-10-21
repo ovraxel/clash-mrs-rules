@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/anthropic
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.list
 
-Behavior: `domain`; unique rules: 11.
+Behavior: `domain`; unique rules: 21.
 
 Unsupported entries skipped: 0.
 

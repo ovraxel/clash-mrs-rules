@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/openai
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.list
 
-Behavior: `domain`; unique rules: 51.
+Behavior: `domain`; unique rules: 53.
 
 Unsupported entries skipped: 2.
 

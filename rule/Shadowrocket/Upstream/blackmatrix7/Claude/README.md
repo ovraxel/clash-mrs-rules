@@ -1,6 +1,6 @@
 # Claude — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 11.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 21.
 
 ## Raw
 

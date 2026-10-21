@@ -1,6 +1,6 @@
 # OpenAI — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 51.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 53.
 
 ## Raw
 
