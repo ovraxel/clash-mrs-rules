@@ -1,6 +1,6 @@
 # GlobalAI — Shadowrocket
 
-Behavior: `domain`; unique rules: 31.
+Behavior: `domain`; unique rules: 79.
 
 ## Raw
 
