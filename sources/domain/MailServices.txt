@@ -32,7 +32,7 @@ full:ksuite.infomaniak.com
 +.ksharelink.com
 
 # Yahoo Mail
-+,imap.mail.yahoo.com
-+,smtp.mail.yahoo.com
-+,apple.imap.mail.yahoo.com
-+,apple.smtp.mail.yahoo.com
++.imap.mail.yahoo.com
++.smtp.mail.yahoo.com
++.apple.imap.mail.yahoo.com
++.apple.smtp.mail.yahoo.com
