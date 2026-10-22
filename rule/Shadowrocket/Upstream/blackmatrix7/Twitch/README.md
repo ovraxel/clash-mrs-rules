@@ -1,6 +1,6 @@
 # Twitch — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 63.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 64.
 
 ## Raw
 

@@ -6,7 +6,7 @@ Sources (4):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/facebook
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.list
 
-Behavior: `ipcidr`; unique rules: 138.
+Behavior: `ipcidr`; unique rules: 137.
 
 Unsupported entries skipped: 1.
 

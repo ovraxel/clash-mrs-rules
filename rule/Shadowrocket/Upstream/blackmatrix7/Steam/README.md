@@ -1,6 +1,6 @@
 # Steam — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 91.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 92.
 
 ## Raw
 
