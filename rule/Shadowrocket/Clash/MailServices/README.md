@@ -1,6 +1,6 @@
 # MailServices — Shadowrocket
 
-Behavior: `domain`; unique rules: 21.
+Behavior: `domain`; unique rules: 26.
 
 ## Raw
 
