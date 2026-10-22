@@ -36,3 +36,73 @@ keyword:openaicom
 +.claudemcpclient.com
 full:servd-anthropic-website.b-cdn.net
 keyword:anthropic
+keyword:claude
+
+# xAI / Grok
++.x.ai
++.grok.com
++.xai.ai
++.xai.com
+keyword:grok
+
+# Dola AI
++.dola.com
++.cici.com
++.ciciai.com
++.byteoversea.com
+keyword:dola
+keyword:ciciai
+
+# Google Gemini / AI
++.gemini.google.com
++.gemini.gstatic.com
++.deepmind.google
++.deepmind.com
+full:aistudio.google.com
+full:generativelanguage.googleapis.com
+full:ai.google.dev
+
+# Perplexity AI
++.perplexity.ai
++.perplexity.com
++.pplx.ai
+full:pplx-res.cloudinary.com
+
+# Kimi / Moonshot AI
++.kimi.com
++.kimi.ai
++.kimi.moonshot.cn
++.moonshot.cn
+
+# DeepSeek
++.deepseek.com
++.deepseek.ai
++.chat.deepseek.com
++.platform.deepseek.com
+
+# OpenRouter
++.openrouter.ai
+
+# Microsoft Copilot
+full:copilot.microsoft.com
+full:sydney.bing.com
+full:www.bing.com
+
+# GitHub Copilot
++.githubcopilot.com
+
+# Apple Intelligence / Siri / Search / Geo
+# Official core endpoints: https://support.apple.com/101555
+# Extended endpoints keep Apple AI region checks and relay bootstrap on one exit
+full:guzzoni.apple.com
+full:mask-api.fe.apple-dns.net
+full:mask-api.icloud.com
+full:mask-t.apple-dns.net
+full:mask.apple-dns.net
++.smoot.apple.com
++.apple-relay.apple.com
++.apple-relay.cloudflare.com
++.apple-relay.fastly-edge.com
++.apple-relay.mask.apple-dns.net
++.cp4.cloudflare.com
++.gspe1-ssl.ls.apple.com
