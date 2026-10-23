@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/speedtest
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.list
 
-Behavior: `domain`; unique rules: 18.
+Behavior: `domain`; unique rules: 25.
 
 Unsupported entries skipped: 1.
 

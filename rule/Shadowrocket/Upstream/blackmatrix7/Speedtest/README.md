@@ -1,6 +1,6 @@
 # Speedtest — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 18.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 25.
 
 ## Raw
 
