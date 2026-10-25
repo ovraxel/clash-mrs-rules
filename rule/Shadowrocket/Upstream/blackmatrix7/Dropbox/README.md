@@ -1,6 +1,6 @@
 # Dropbox — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 18.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 27.
 
 ## Raw
 

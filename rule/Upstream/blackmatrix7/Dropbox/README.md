@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/dropbox
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Dropbox/Dropbox.list
 
-Behavior: `domain`; unique rules: 18.
+Behavior: `domain`; unique rules: 27.
 
 Unsupported entries skipped: 0.
 
