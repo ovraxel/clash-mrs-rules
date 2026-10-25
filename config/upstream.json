@@ -1763,6 +1763,121 @@
           "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.list"
         }
       ]
+    },
+    {
+      "name": "Private",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/private"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.list"
+        }
+      ]
+    },
+    {
+      "name": "Amazon",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": true,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/amazon.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/amazon"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Amazon/Amazon.list"
+        }
+      ]
+    },
+    {
+      "name": "Notion",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": false,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/notion.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/notion"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Notion/Notion.list"
+        }
+      ]
+    },
+    {
+      "name": "Figma",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": false,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/figma.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/figma"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Figma/Figma.list"
+        }
+      ]
+    },
+    {
+      "name": "JD",
+      "provider": "blackmatrix7",
+      "domain": true,
+      "ipcidr": false,
+      "sources": [
+        {
+          "provider": "MetaCubeX",
+          "format": "mihomo-domain",
+          "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/jd.list"
+        },
+        {
+          "provider": "V2Fly",
+          "format": "geosite",
+          "url": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/jd"
+        },
+        {
+          "provider": "blackmatrix7",
+          "format": "classical-list",
+          "url": "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/JingDong/JingDong.list"
+        }
+      ]
     }
   ]
 }
