@@ -7,6 +7,7 @@
     "MailServices",
     "Outlook",
     "ApplePush-IP",
+    "Session-IP",
     "Telegram-IP"
   ]
 }

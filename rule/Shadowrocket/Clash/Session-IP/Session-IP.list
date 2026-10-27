@@ -1,0 +1,5 @@
+# Shadowrocket RULE-SET; generated automatically.
+IP-CIDR,198.98.48.12/32,no-resolve
+IP-CIDR,74.207.241.190/32,no-resolve
+IP-CIDR,91.98.69.235/32,no-resolve
+IP-CIDR,95.217.37.13/32,no-resolve
