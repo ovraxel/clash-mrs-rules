@@ -1,6 +1,6 @@
 # Apple — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 2086.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 2088.
 
 ## Raw
 

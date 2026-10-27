@@ -1,6 +1,6 @@
 # Google — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1377.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1383.
 
 ## Raw
 

@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.list
 
-Behavior: `domain`; unique rules: 1377.
+Behavior: `domain`; unique rules: 1383.
 
 Unsupported entries skipped: 8.
 

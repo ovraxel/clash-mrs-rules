@@ -22,6 +22,9 @@ DOMAIN,app-analytics-services.com
 DOMAIN,app-measurement-cn.com
 DOMAIN,app-measurement.com
 DOMAIN,apps5.oingo.com
+DOMAIN,appsgenaiserver-pa.clients.google.com
+DOMAIN,appsgenaiserver-pa.clients6.google.com
+DOMAIN,appsgenaiserver-pa.googleapis.com
 DOMAIN,avail.googleflights.net
 DOMAIN,beacons.gcp.gvt2.com
 DOMAIN,beacons.gvt2.com
@@ -309,6 +312,9 @@ DOMAIN-SUFFIX,appbridge.ca
 DOMAIN-SUFFIX,appbridge.io
 DOMAIN-SUFFIX,appbridge.it
 DOMAIN-SUFFIX,apps5.oingo.com
+DOMAIN-SUFFIX,appsgenaiserver-pa.clients.google.com
+DOMAIN-SUFFIX,appsgenaiserver-pa.clients6.google.com
+DOMAIN-SUFFIX,appsgenaiserver-pa.googleapis.com
 DOMAIN-SUFFIX,appspot.com
 DOMAIN-SUFFIX,apture.com
 DOMAIN-SUFFIX,area120.com
