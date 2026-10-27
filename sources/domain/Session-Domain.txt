@@ -1,0 +1,12 @@
+# NAME: Session-Domain
+# FORMAT: Mihomo Domain TXT
+
+getsession.org
+session.org
+seed1.getsession.org
+seed2.getsession.org
+seed3.getsession.org
+files.getsession.org
+filev2.getsession.org
+push.getsession.org
+open.getsession.org
