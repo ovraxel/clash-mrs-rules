@@ -6,6 +6,7 @@
     "GlobalAI",
     "MailServices",
     "Outlook",
+    "Session-Domain",
     "ApplePush-IP",
     "Session-IP",
     "Telegram-IP"

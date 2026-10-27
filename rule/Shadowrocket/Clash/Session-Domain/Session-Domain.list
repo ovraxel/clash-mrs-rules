@@ -1,0 +1,10 @@
+# Shadowrocket RULE-SET; generated automatically.
+DOMAIN-SUFFIX,files.getsession.org
+DOMAIN-SUFFIX,filev2.getsession.org
+DOMAIN-SUFFIX,getsession.org
+DOMAIN-SUFFIX,open.getsession.org
+DOMAIN-SUFFIX,push.getsession.org
+DOMAIN-SUFFIX,seed1.getsession.org
+DOMAIN-SUFFIX,seed2.getsession.org
+DOMAIN-SUFFIX,seed3.getsession.org
+DOMAIN-SUFFIX,session.org
