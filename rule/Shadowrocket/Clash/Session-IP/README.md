@@ -1,6 +1,6 @@
 # Session-IP — Shadowrocket
 
-Behavior: `ipcidr`; unique rules: 4.
+Behavior: `ipcidr`; unique rules: 7.
 
 ## Raw
 

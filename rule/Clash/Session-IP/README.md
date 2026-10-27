@@ -1,6 +1,6 @@
 # Session-IP MRS
 
-由本倉庫 TXT 規則自動轉換；Behavior：`ipcidr`；去重後規則數：**4**。
+由本倉庫 TXT 規則自動轉換；Behavior：`ipcidr`；去重後規則數：**7**。
 
 ## GitHub Raw（可用程式碼區塊右上角複製）
 
