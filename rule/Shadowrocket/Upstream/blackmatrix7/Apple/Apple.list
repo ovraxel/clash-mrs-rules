@@ -1930,7 +1930,9 @@ DOMAIN-SUFFIX,sequoia.apple.com
 DOMAIN-SUFFIX,services-apple.net
 DOMAIN-SUFFIX,servicetalk.io
 DOMAIN-SUFFIX,sf-api-token-service.itunes.apple.com
+DOMAIN-SUFFIX,sh-pod1-smp-device.apple.com
 DOMAIN-SUFFIX,sh-pod2-smp-device.apple.com
+DOMAIN-SUFFIX,sh-pod3-smp-device.apple.com
 DOMAIN-SUFFIX,shazam-insights.cdn-apple.com
 DOMAIN-SUFFIX,shazam.com
 DOMAIN-SUFFIX,shoers.com
