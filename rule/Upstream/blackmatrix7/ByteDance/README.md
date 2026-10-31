@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/bytedance
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ByteDance/ByteDance.list
 
-Behavior: `domain`; unique rules: 1110.
+Behavior: `domain`; unique rules: 1113.
 
 Unsupported entries skipped: 2.
 

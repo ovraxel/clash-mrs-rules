@@ -1,6 +1,6 @@
 # TikTok — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 65.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 68.
 
 ## Raw
 

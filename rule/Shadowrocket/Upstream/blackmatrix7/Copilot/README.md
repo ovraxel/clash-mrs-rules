@@ -1,6 +1,6 @@
 # Copilot — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 923.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 925.
 
 ## Raw
 
