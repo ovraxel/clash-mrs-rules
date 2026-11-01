@@ -42,6 +42,7 @@
 +.bitget.site
 +.bitgetwallet.com
 +.bitget.cloud
++.bitgetapps.com
 
 # OKX - 交易所及 Web3 錢包
 # 交易、API、WebSocket、區域服務
