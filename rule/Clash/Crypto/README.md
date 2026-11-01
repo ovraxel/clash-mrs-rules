@@ -1,6 +1,6 @@
 # Crypto MRS
 
-由本倉庫 TXT 規則自動轉換；Behavior：`domain`；去重後規則數：**40**。
+由本倉庫 TXT 規則自動轉換；Behavior：`domain`；去重後規則數：**41**。
 
 ## GitHub Raw（可用程式碼區塊右上角複製）
 
