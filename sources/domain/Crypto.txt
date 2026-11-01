@@ -11,6 +11,7 @@
 +.binance.cloud
 +.binance.org
 +.binanceapi.com
+
 # Bybit - 加密貨幣交易所
 # 交易、API、行情、WebSocket、區域服務
 +.bybit.com
@@ -21,6 +22,10 @@
 +.bybit.id
 +.bytick.com
 +.bybitgeorgia.ge
++.byapps.net
++.bybit.biz
++.bybdc6.com
++.byabcde.com
 
 # BiyaPay - 加密貨幣支付及跨境金融
 # 官方網站、區域入口
