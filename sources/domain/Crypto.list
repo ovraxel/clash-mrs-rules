@@ -1,13 +1,8 @@
-# ==========================================
 # Crypto - Exchange & Wallet
 # Binance / Bybit / BiyaPay / Bitget
 # OKX / Kraken / MetaMask
-# ==========================================
-
-# ------------------------------------------
 # Binance - 幣安
 # 交易所、API、行情、WebSocket、資料服務
-# ------------------------------------------
 +.binance.com
 +.binance.us
 +.binance.info
@@ -16,11 +11,8 @@
 +.binance.cloud
 +.binance.org
 +.binanceapi.com
-
-# ------------------------------------------
 # Bybit - 加密貨幣交易所
 # 交易、API、行情、WebSocket、區域服務
-# ------------------------------------------
 +.bybit.com
 +.bybit.eu
 +.bybit.kz
@@ -30,45 +22,35 @@
 +.bytick.com
 +.bybitgeorgia.ge
 
-# ------------------------------------------
 # BiyaPay - 加密貨幣支付及跨境金融
 # 官方網站、區域入口
-# ------------------------------------------
 +.biyapay.com
 +.biyapay.io
 +.biyagl.com
 
-# ------------------------------------------
 # Bitget - 交易所及 Web3 錢包
 # 交易、API、WebSocket、錢包
-# ------------------------------------------
 +.bitget.com
 +.bitgetapp.com
 +.bitget.site
 +.bitgetwallet.com
 +.bitget.cloud
 
-# ------------------------------------------
 # OKX - 交易所及 Web3 錢包
 # 交易、API、WebSocket、區域服務
-# ------------------------------------------
 +.okx.com
 +.okx.org
 +.okex.com
 +.okxwallet.com
 
-# ------------------------------------------
+
 # Kraken - 加密貨幣交易所
 # 交易、REST API、WebSocket、帳戶服務
-# ------------------------------------------
 +.kraken.com
 +.kraken.io
 +.kraken.tech
 +.krakenpro.com
-
-# ------------------------------------------
 # MetaMask - Web3 加密貨幣錢包
 # 錢包、Portfolio、官方服務
-# ------------------------------------------
 +.metamask.io
 +.metamask.com
