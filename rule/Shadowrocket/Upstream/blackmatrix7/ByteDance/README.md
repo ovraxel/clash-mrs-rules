@@ -1,6 +1,6 @@
 # ByteDance — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1113.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1116.
 
 ## Raw
 

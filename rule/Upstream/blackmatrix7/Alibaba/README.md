@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/alibaba
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Alibaba/Alibaba.list
 
-Behavior: `domain`; unique rules: 1492.
+Behavior: `domain`; unique rules: 1494.
 
 Unsupported entries skipped: 1.
 
