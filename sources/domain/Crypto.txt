@@ -27,6 +27,8 @@
 +.biyapay.com
 +.biyapay.io
 +.biyagl.com
++.biya.in
++.biyainfo.com
 
 # Bitget - 交易所及 Web3 錢包
 # 交易、API、WebSocket、錢包
