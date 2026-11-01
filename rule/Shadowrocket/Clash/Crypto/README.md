@@ -1,6 +1,6 @@
 # Crypto — Shadowrocket
 
-Behavior: `domain`; unique rules: 34.
+Behavior: `domain`; unique rules: 36.
 
 ## Raw
 
