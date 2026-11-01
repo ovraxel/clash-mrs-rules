@@ -1,6 +1,7 @@
 {
   "managed_rules": [
     "ApplePush",
+    "Crypto",
     "Dola",
     "Feishu",
     "GlobalAI",
