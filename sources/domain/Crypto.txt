@@ -12,21 +12,6 @@
 +.binance.org
 +.binanceapi.com
 
-# Bybit - 加密貨幣交易所
-# 交易、API、行情、WebSocket、區域服務
-+.bybit.com
-+.bybit.eu
-+.bybit.kz
-+.bybit.tr
-+.bybit.ae
-+.bybit.id
-+.bytick.com
-+.bybitgeorgia.ge
-+.byapps.net
-+.bybit.biz
-+.bybdc6.com
-+.byabcde.com
-
 # BiyaPay - 加密貨幣支付及跨境金融
 # 官方網站、區域入口
 +.biyapay.com
@@ -43,13 +28,6 @@
 +.bitgetwallet.com
 +.bitget.cloud
 +.bitgetapps.com
-
-# OKX - 交易所及 Web3 錢包
-# 交易、API、WebSocket、區域服務
-+.okx.com
-+.okx.org
-+.okex.com
-+.okxwallet.com
 
 
 # Kraken - 加密貨幣交易所
