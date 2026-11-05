@@ -1,6 +1,6 @@
 # Google-IP — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 8559.
+Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 8426.
 
 ## Raw
 

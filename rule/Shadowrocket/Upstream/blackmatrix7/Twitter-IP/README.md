@@ -1,6 +1,6 @@
 # Twitter-IP — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 22.
+Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 23.
 
 ## Raw
 
