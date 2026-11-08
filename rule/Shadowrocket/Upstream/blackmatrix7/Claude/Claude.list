@@ -21,4 +21,6 @@ DOMAIN-SUFFIX,claudemcpcontent.com
 DOMAIN-SUFFIX,claudepages.dev
 DOMAIN-SUFFIX,claudestudio.com
 DOMAIN-SUFFIX,claudeusercontent.com
+DOMAIN-SUFFIX,http-intake.logs.us5.datadoghq.com
+DOMAIN-SUFFIX,o1158394.ingest.us.sentry.io
 DOMAIN-SUFFIX,servd-anthropic-website.b-cdn.net

@@ -1,6 +1,6 @@
 # GitHub — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 102.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 104.
 
 ## Raw
 

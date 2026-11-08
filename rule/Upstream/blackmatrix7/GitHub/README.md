@@ -5,7 +5,7 @@ Sources (3):
 - https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/github
 - https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.list
 
-Behavior: `domain`; unique rules: 102.
+Behavior: `domain`; unique rules: 104.
 
 Unsupported entries skipped: 0.
 
