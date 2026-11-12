@@ -1,6 +1,6 @@
 # Facebook-IP — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 142.
+Provider: `blackmatrix7`; behavior: `ipcidr`; unique rules: 141.
 
 ## Raw
 
