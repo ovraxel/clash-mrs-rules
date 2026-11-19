@@ -1,6 +1,6 @@
 # Alibaba — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1494.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1495.
 
 ## Raw
 

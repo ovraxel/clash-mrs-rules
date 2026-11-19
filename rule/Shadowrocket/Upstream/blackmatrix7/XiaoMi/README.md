@@ -1,6 +1,6 @@
 # XiaoMi — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 178.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 177.
 
 ## Raw
 
