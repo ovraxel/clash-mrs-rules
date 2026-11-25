@@ -1,6 +1,6 @@
 # Gemini — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 70.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 71.
 
 ## Raw
 
