@@ -1,6 +1,6 @@
 # Microsoft — Shadowrocket
 
-Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1013.
+Provider: `blackmatrix7`; behavior: `domain`; unique rules: 1015.
 
 ## Raw
 
